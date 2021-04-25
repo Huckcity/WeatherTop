@@ -1,0 +1,20 @@
+<header class="flex justify-between md:justify-around bg-purple-200 md:mx-4 m-auto shadow-md">
+    <p class="flex font-bold md:text-3xl md:p-4 items-center">
+        <img src="https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-02-64.png" alt="">
+        WeatherTop</p>
+    <nav class="hidden md:flex items-center text-purple-500 text-xl">
+        <a class="inline-block p-4 text-purple-500 h-full hover:bg-purple-300 transition ease-in duration-150" href="/">Home</a>
+        <a class="inline-block p-4 text-purple-500 h-full hover:bg-purple-300 transition ease-in duration-150" href="/stations">Stations</a>
+        <a class="inline-block p-4 text-purple-500 h-full hover:bg-purple-300 transition ease-in duration-150" href="/about">About</a>
+    </nav>
+    <a href="javascript:void(0);" class="icon md:hidden h-full p-4" onclick="myFunction()">
+        <i class="fas fa-bars fa-2x"></i>
+    </a>
+
+</header>
+
+<nav id="myLinks" class="hidden flex flex-col transition">
+    <a class="block w-full p-2 bg-purple-200 hover:bg-purple-300" href="/">Home</a>
+    <a class="block w-full p-2 bg-purple-200 hover:bg-purple-300" href="/stations">Stations</a>
+    <a class="block w-full p-2 bg-purple-200 hover:bg-purple-300" href="/about">About</a>
+</nav>

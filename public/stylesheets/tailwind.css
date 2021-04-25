@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-li {
+    @apply mx-auto px-3 h-full w-full;
+}
+
+.nav-li:hover {
+    @apply bg-purple-300;
+}
+
+.a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

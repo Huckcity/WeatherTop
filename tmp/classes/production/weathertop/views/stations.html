@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:'Stations' /}
+
+#{menu id:"stations"/}
+
+<h1>stations</h1>
+
+<table class="min-w-full"></table>
+#{list items:stationList, as:'station'}
+    <p>${station.name}</p>
+    #{listreadings station:station/}
+#{/list}

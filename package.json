@@ -1,0 +1,23 @@
+{
+  "name": "weathertop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "buildcss": "postcss ./public/stylesheets/tailwind.css -o ./public/stylesheets/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.10",
+    "tailwindcss": "^2.1.1"
+  },
+  "dependencies": {
+    "postcss-cli": "^8.3.1"
+  }
+}
