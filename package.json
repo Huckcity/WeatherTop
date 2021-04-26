@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "buildcss": "postcss ./public/stylesheets/tailwind.css -o ./public/stylesheets/style.css"
+    "buildcss": "postcss ./public/stylesheets/tailwind.css -o ./public/stylesheets/style.css",
+    "watchcss": "postcss ./public/stylesheets/tailwind.css -o ./public/stylesheets/style.css -w"
   },
   "author": "",
   "license": "ISC",

@@ -1,5 +1,7 @@
-<ul>
-    #{list items:_station.readings, as:'reading'}
-    <li>${reading.code}</li>
-    #{/list}
-</ul>
+#{list items:_station.readings, as:'reading'}
+<tr class="hover:bg-gray-100 border-b-0 border-purple-500 hover:border-b-1 hover:border-gray-500">
+    <td>${reading.code}</td>
+    <td>${reading.temperature}C</td>
+    <td>${reading.windSpeed}km/h</td>
+</tr>
+#{/list}
