@@ -3,12 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
-GET     /stations                               Application.stations
-GET     /about                                  Application.index
+GET     /                                       Start.index
+GET     /about                                  Start.index
+GET     /stations                               StationCtrl.stations
 
-POST    /stations/addstation                    Application.addStation
-
+POST    /stations/addstation                    StationCtrl.addStation
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
