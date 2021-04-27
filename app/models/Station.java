@@ -15,6 +15,7 @@ public class Station extends Model {
     public String name;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
+    public String weatherCode;
 
     public Station(String name) {
         this.name = name;

@@ -18,5 +18,4 @@ public class Reading extends Model {
         this.pressure = pressure;
     }
 
-
 }

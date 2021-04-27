@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Reading;
 import models.Station;
 import play.mvc.Controller;
 
@@ -9,7 +10,21 @@ public class StationCtrl extends Controller {
 
     public static void stations() {
         List<Station> stationList = Station.findAll();
+
+        for(Station s : stationList) {
+            s.weatherCode = codeToText(s.readings.get(s.readings.size()-1).code);
+        }
+
         render("stations.html", stationList);
+    }
+
+    public static void station(Long id) {
+        try {
+            Station station = Station.findById(id);
+            render("station.html", station);
+        } catch(Exception result) {
+            render("errors/404.html", result);
+        }
     }
 
     public static void addStation(String name) {
@@ -18,7 +33,7 @@ public class StationCtrl extends Controller {
         redirect("/");
     }
 
-    public String codeToText(int code) {
+    public static String codeToText(int code) {
         switch (code) {
             case 100:
                 return "Clear";
@@ -40,5 +55,4 @@ public class StationCtrl extends Controller {
                 return "Unknown";
         }
     }
-
 }

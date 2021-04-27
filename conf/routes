@@ -6,6 +6,7 @@
 GET     /                                       Start.index
 GET     /about                                  Start.index
 GET     /stations                               StationCtrl.stations
+GET     /station/{id}                           StationCtrl.station
 
 POST    /stations/addstation                    StationCtrl.addStation
 
