@@ -8,23 +8,20 @@
 <section class="m-2 p-2 border-2 rounded">
     <h1 class="font-bold text-2xl text-purple-500">${station.name}</h1>
 
-    #{stationcards station:station /}
-
-    <table class="min-w-full text-right">
-        <thead class="bg-purple-100 font-bold text-purple-500">
-        <tr>
-            <th class="p-2">Code</th>
-            <th class="p-2">Temperature</th>
-            <th class="p-2">Wind Speed</th>
-            <th class="p-2">Pressure</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            #{listreadings station:station/}
-        </tr>
-        </tbody>
-    </table>
+    <a href="/station/${station.id}">View</a>
 </section>
 
 #{/list}
+
+<section class="m-2 p-2 border-2 rounded">
+    <form action="/stations/addstation" method="POST">
+
+        <label for="station_name" class="text-sm font-medium text-gray-700">Station Name:</label>
+        <input type="text" name="station_name" id="station_name" class="shadow-sm border border-gray-300 rounded">
+
+        <button type="submit"
+                class="bg-white py-1 px-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Add Station
+        </button>
+    </form>
+</section>

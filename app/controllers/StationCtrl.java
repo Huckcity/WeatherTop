@@ -2,6 +2,7 @@ package controllers;
 
 import models.Reading;
 import models.Station;
+import play.Logger;
 import play.mvc.Controller;
 
 import java.text.DecimalFormat;
@@ -13,15 +14,20 @@ public class StationCtrl extends Controller {
         List<Station> stations = Station.findAll();
 
         for (Station s : stations) {
-            Reading r = s.readings.get(s.readings.size()-1);
+            try {
+                Reading r = s.readings.get(s.readings.size()-1);
 
-            s.weatherCode = codeToText(r.code);
-            s.celsius = r.temperature;
-            s.fahrenheit = calcFahrenheit(r.temperature);
-            s.windBeaufort = calcBeaufort(r.windSpeed);
-            s.windDirection = calcWindDir(r.windDirection);
-            s.pressure = r.pressure;
-            s.windChill = calcWindChill(r.temperature, r.windSpeed);
+                s.weatherCode = codeToText(r.code);
+                s.celsius = r.temperature;
+                s.fahrenheit = calcFahrenheit(r.temperature);
+                s.windBeaufort = calcBeaufort(r.windSpeed);
+                s.windDirection = calcWindDir(r.windDirection);
+                s.pressure = r.pressure;
+                s.windChill = calcWindChill(r.temperature, r.windSpeed);
+            } catch (Exception e) {
+                Logger.info(e.toString());
+            }
+
         }
 
         render("stations.html", stations);
@@ -29,21 +35,32 @@ public class StationCtrl extends Controller {
 
     public static void station(Long id) {
         try {
-            Station s = Station.findById(id);
-            Reading r = s.readings.get(s.readings.size()-1);
+            Station station = Station.findById(id);
+            try {
+                Reading r = station.readings.get(station.readings.size()-1);
 
-            s.weatherCode = codeToText(r.code);
-            s.celsius = (int)r.temperature;
-            s.fahrenheit = calcFahrenheit(r.temperature);
-            s.windBeaufort = calcBeaufort(r.windSpeed);
-            s.windDirection = calcWindDir(r.windDirection);
-            s.pressure = r.pressure;
-            s.windChill = calcWindChill(r.temperature, r.windSpeed);
+                station.weatherCode = codeToText(r.code);
+                station.celsius = (int)r.temperature;
+                station.fahrenheit = calcFahrenheit(r.temperature);
+                station.windBeaufort = calcBeaufort(r.windSpeed);
+                station.windDirection = calcWindDir(r.windDirection);
+                station.pressure = r.pressure;
+                station.windChill = calcWindChill(r.temperature, r.windSpeed);
+            } catch (Exception e) {
+                Logger.info(e.toString());
+            }
 
-            render("station.html", s);
+            render("station.html", station);
         } catch(Exception result) {
             render("errors/404.html", result);
         }
+    }
+
+    public static void addStation(String station_name) {
+        Station station = new Station(station_name);
+        station.save();
+        Logger.info("adding station" + station);
+        redirect("/");
     }
 
     private static String calcWindChill(double t, double v) {
@@ -104,12 +121,6 @@ public class StationCtrl extends Controller {
 
     private static int calcFahrenheit(double temperature) {
         return (int)(temperature*(9/5) + 32);
-    }
-
-    public static void addStation(String name) {
-        Station station = new Station(name);
-        station.save();
-        redirect("/");
     }
 
     public static String codeToText(int code) {
