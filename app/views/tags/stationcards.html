@@ -1,0 +1,24 @@
+<section class="flex justify-between space-x-2 my-2">
+    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
+        <h3>${_station.name}</h3>
+    </article>
+    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
+        <h3>Weather</h3>
+        <p>${_station.weatherCode}</p>
+    </article>
+    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
+        <h3>Temp</h3>
+        <p>${_station.fahrenheit}F</p>
+        <p>${_station.celsius}C</p>
+    </article>
+    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
+        <h3>Wind</h3>
+        <p>${_station.windBeaufort}bft</p>
+        <p>${_station.windDirection}</p>
+        <p>${_station.windChill}</p>
+    </article>
+    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
+        <h3>Pressure</h3>
+        <p>${_station.pressure} hpa</p>
+    </article>
+</section>

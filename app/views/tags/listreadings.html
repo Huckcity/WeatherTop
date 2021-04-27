@@ -1,35 +1,8 @@
 #{list items:_station.readings, as:'reading'}
-
-    #{if reading_isLast}
-    <section class="flex justify-between space-x-2 my-2">
-        <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 h-24 w-1/5 px-2 pt-6">
-            <h3>${_station.name}</h3>
-        </article>
-        <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 h-24 w-1/5 px-2 pt-6">
-            <h3>Weather</h3>
-            <p>${_station.weatherCode}</p>
-        </article>
-        <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 h-24 w-1/5 px-2 pt-6">
-            <h3>Temp</h3>
-            <p>${reading.temperature}</p>
-        </article>
-        <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 h-24 w-1/5 px-2 pt-6">
-            <h3>Wind</h3>
-            <p>${reading.windSpeed}</p>
-        </article>
-        <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 h-24 w-1/5 px-2 pt-6">
-            <h3>Pressure</h3>
-            <p>${reading.pressure}</p>
-        </article>
-    </section>
-    #{/if}
-
-#{/list}
-
-#{list items:_station.readings, as:'reading'}
     <tr class="hover:bg-gray-100 border-b-0 border-purple-500 hover:border-b-1 hover:border-gray-500">
         <td>${reading.code}</td>
         <td>${reading.temperature}C</td>
         <td>${reading.windSpeed}km/h</td>
+        <td>${reading.pressure}</td>
     </tr>
 #{/list}

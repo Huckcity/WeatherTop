@@ -3,24 +3,28 @@ Reading(r1):
   temperature: 0.5
   windSpeed: 3.5
   pressure: 1001
+  windDirection: 220
 
 Reading(r2):
   code: 600
   temperature: 6.0
   windSpeed: 2
   pressure: 1004
+  windDirection: 200
 
 Reading(r3):
   code: 700
   temperature: 8.0
   windSpeed: 1
   pressure: 1000
+  windDirection: 90
 
 Reading(r4):
   code: 200
   temperature: 0.5
   windSpeed: 3.5
   pressure: 998
+  windDirection: 120
 
 Station(s1):
   name: Tramore
