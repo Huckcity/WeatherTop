@@ -3,5 +3,78 @@
 
 #{menu id:"stations"/}
 
-${station.name}
-${codeString}
+<section class="flex flex-wrap justify-around md:flex-nowrap">
+    <article class="station-card">
+        <h3 class="card-title">Weather</h3>
+        <p>${station.weatherCode}</p>
+    </article>
+    <article class="station-card">
+        <h3 class="card-title">Temp</h3>
+        <p>${station.celsius}C</p>
+        <p>${station.fahrenheit}F</p>
+    </article>
+    <article class="station-card">
+        <h3 class="card-title">Wind</h3>
+        <p>${station.windDirection}</p>
+        <p>Feels like ${station.windChill}</p>
+    </article>
+    <article class="station-card">
+        <h3 class="card-title">Pressure</h3>
+        <p>${station.pressure}</p>
+    </article>
+</section>
+
+<table class="min-w-full text-right">
+    <thead class="bg-purple-100 font-bold text-purple-500">
+        <tr class="">
+            <th class="p-2 text-left">Date/Time</th>
+            <th class="p-2">Code</th>
+            <th class="p-2">Temperature</th>
+            <th class="p-2">Wind Speed</th>
+            <th class="p-2">Wind Direction</th>
+            <th class="p-2">Pressure</th>
+            <th class="p-2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        #{list items:station.readings, as:'reading'}
+        <tr class="hover:bg-gray-100 border-b-0 border-purple-500 hover:border-b-1 hover:border-gray-500">
+            <td class="text-left">2021-01-20 10:21:15</td>
+            <td>${reading.code}</td>
+            <td>${reading.temperature}C</td>
+            <td>${reading.windSpeed}km/h</td>
+            <td>${reading.windDirection}</td>
+            <td>${reading.pressure}</td>
+            <td>Del</td>
+        </tr>
+        #{/list}
+
+    </tbody>
+</table>
+
+<form action="/station/${station.id}/addReading" method="POST" class="form">
+    <fieldset class="md:flex md:flex-wrap justify-between border-2 m-2 p-2">
+        <legend>Add A Reading</legend>
+        <label for="code">Code</label>
+        <select name="code" id="code" class="form-input">
+            <option value=100>100 (Clear)</option>
+            <option value=200>200 (Partial cloud)</option>
+            <option value=300>300 (Cloudy)</option>
+            <option value=400>400 (Light showers)</option>
+            <option value=500>500 (Heavy showers)</option>
+            <option value=600>600 (Rain)</option>
+            <option value=700>700 (Snow)</option>
+            <option value=800>800 (Thunder)</option>
+        </select>
+        <label for="temperature">Temperature</label>
+        <input type="number" id="temperature" name="temperature" placeholder=" 5.0C" class="form-input" step="any">
+        <label for="windSpeed">Wind Speed</label>
+        <input type="numer" id="windSpeed" name="windSpeed" placeholder=" 10.5kmph" class="form-input">
+        <label for="windDirection">Wind Direction</label>
+        <input type="number" id="windDirection" name="windDirection" placeholder=" 180deg" class="form-input">
+        <label for="pressure">Pressure</label>
+        <input type="number" id="pressure" name="pressure" placeholder=" 000hPa" class="form-input">
+        <button type="submit" class="form-button">Save Reading</button>
+    </fieldset>
+</form>

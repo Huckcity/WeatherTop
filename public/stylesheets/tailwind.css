@@ -2,18 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.nav-li {
-    @apply mx-auto px-3 h-full w-full;
+.card-title {
+    @apply font-bold uppercase;
 }
 
-.nav-li:hover {
-    @apply bg-purple-300;
+.station-card {
+    @apply flex-auto bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48;
 }
 
-.a.icon {
-    background: black;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
+.form-input {
+    @apply shadow-sm border border-gray-300 rounded;
+}
+.form-button {
+    @apply self-end bg-white py-1 px-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.form label {
+    @apply block md:inline;
 }

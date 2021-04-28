@@ -9,6 +9,7 @@ GET     /stations                               StationCtrl.stations
 GET     /station/{id}                           StationCtrl.station
 
 POST    /stations/addstation                    StationCtrl.addStation
+POST    /station/{id}/addReading                StationCtrl.addReading
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
