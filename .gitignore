@@ -1,1 +1,9 @@
-weathertop.iws
+.settings
+eclipse
+documentation
+tmp
+.classpath
+.project
+*.iws
+*.iml
+*.ipr
