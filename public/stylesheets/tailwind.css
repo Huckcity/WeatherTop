@@ -20,3 +20,24 @@
 .form label {
     @apply block md:inline;
 }
+
+.nav-container {
+    @apply flex justify-between md:justify-around items-center bg-purple-200 m-auto shadow-md;
+}
+
+.nav {
+    @apply absolute top-16 h-auto md:relative md:top-0 hidden flex flex-col w-full md:w-auto md:flex md:flex-row h-full text-purple-500 text-xl;
+}
+
+.nav-logo {
+    @apply flex font-bold text-purple-800 md:text-3xl items-center;
+}
+
+.nav-item {
+    @apply p-4 text-purple-500 bg-purple-200 hover:bg-purple-300 transition;
+}
+
+.active {
+    @apply border-l-4 md:border-l-0 md:border-b-4 border-purple-600;
+}
+

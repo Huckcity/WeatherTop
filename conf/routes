@@ -4,9 +4,16 @@
 
 # Home page
 GET     /                                       Start.index
-GET     /about                                  Start.index
+GET     /about                                  Start.about
+
 GET     /stations                               StationCtrl.stations
 GET     /station/{id}                           StationCtrl.station
+
+GET     /signup                                 Accounts.signup
+GET     /login                                  Accounts.login
+GET     /logout                                 Accounts.logout
+POST    /register                               Accounts.register
+POST    /authenticate                           Accounts.authenticateUser
 
 POST    /stations/addstation                    StationCtrl.addStation
 POST    /station/{id}/addReading                StationCtrl.addReading

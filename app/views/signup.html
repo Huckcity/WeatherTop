@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Sign Up' /}
+
+#{loggedoutmenu id:"signup"/}
+
+<p>sign up</p>
+
+<form action="/register" method="post">
+    <fieldset>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="First Name">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="email@example.com">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <label for="repeatPassword">Repeat Password</label>
+        <input type="password" id="repeatPassword" name="repeatPassword">
+        <button type="submit">Register</button>
+    </fieldset>
+</form>
