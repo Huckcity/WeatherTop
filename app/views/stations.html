@@ -3,10 +3,16 @@
 
 #{menu id:"stations"/}
 
+<h1>${loggedInUser.firstName}'s Stations</h1>
+
 #{list items:stations, as:'station'}
 
-<section class="m-2 p-2 border-2 rounded">
-    <h1 class="font-bold text-2xl text-purple-500">${station.name}</h1>
+<section class="group m-2 p-2 border-2 rounded-lg hover:bg-gray-100 hover:border-gray-400 transition">
+    <h1 class="group-hover:text-purple-600 font-bold text-2xl text-purple-500">${station.name}</h1>
+    <ul class="text-gray-400 group-hover:text-gray-600">
+        <li>Lat: ${station.latitude}</li>
+        <li>Lng: ${station.longitude}</li>
+    </ul>
     <a href="/station/${station.id}">View</a>
 </section>
 
@@ -17,7 +23,10 @@
 
         <label for="station_name" class="text-sm font-medium text-gray-700">Station Name:</label>
         <input type="text" name="station_name" id="station_name" class="form-input" placeholder="Station Name">
-
+        <label for="latitude">Latitude:</label>
+        <input type="number" name="latitude" id="latitude" class="form-input" step="0.00001" placeholder="0.00000">
+        <label for="longitude">Latitude:</label>
+        <input type="number" name="longitude" id="longitude" class="form-input" step="0.00001" placeholder="0.00000">
         <button type="submit" class="form-button">
             Add Station
         </button>

@@ -2,13 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.card-title {
-    @apply font-bold uppercase;
+/**** CARDS ****/
+
+.station-header-card {
+    @apply bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 transition
 }
 
-.station-card {
-    @apply flex-auto bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48;
+.card-title {
+    @apply text-base md:text-lg font-bold uppercase;
 }
+
+.card-header {
+    @apply flex justify-between;
+}
+.station-card {
+    @apply flex-auto text-sm bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48 transition;
+}
+
+/**** FORMS ****/
 
 .form-input {
     @apply shadow-sm border border-gray-300 rounded;
@@ -20,6 +31,8 @@
 .form label {
     @apply block md:inline;
 }
+
+/**** NAV ELEMENTS ****/
 
 .nav-container {
     @apply flex justify-between md:justify-around items-center bg-purple-200 m-auto shadow-md;
@@ -41,3 +54,6 @@
     @apply border-l-4 md:border-l-0 md:border-b-4 border-purple-600;
 }
 
+.show-nav {
+    @apply absolute top-16;
+}

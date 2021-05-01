@@ -1,54 +1,84 @@
 #{extends 'main.html' /}
 #{set title:'Stations' /}
 
-#{menu id:"station"/}
+#{menu id:"stations"/}
+
+<div class="station-header-card">
+    <h3 class="card-title">${station.name}</h3>
+    <div class="flex">
+        <i class="fas fa-map-marker-alt fa-2x mt-3"></i>
+        <ul class="text-sm mt-1 ml-3">
+            <li>${station.latitude}</li>
+            <li>${station.longitude}</li>
+        </ul>
+    </div>
+</div>
 
 <section class="flex flex-wrap justify-around md:flex-nowrap">
     <article class="station-card">
-        <h3 class="card-title">Weather</h3>
+        <div class="card-header">
+            <h3 class="card-title">Weather</h3>
+            <i class="fas ${station.weatherIcon} fa-3x"></i>
+        </div>
         <p>${station.weatherCode}</p>
     </article>
     <article class="station-card">
-        <h3 class="card-title">Temp</h3>
+        <div class="card-header">
+            <h3 class="card-title">Temp</h3>
+            <i class="fas fa-temperature-low fa-3x"></i>
+        </div>
         <p>${station.celsius}C</p>
         <p>${station.fahrenheit}F</p>
+        <p>Max: ${station.maxTemp}</p>
+        <p>Min: ${station.minTemp}</p>
     </article>
     <article class="station-card">
-        <h3 class="card-title">Wind</h3>
+        <div class="card-header">
+            <h3 class="card-title">Wind</h3>
+            <i class="fas fa-wind fa-3x"></i>
+        </div>
+        <p>${station.windBeaufort} bft</p>
         <p>${station.windDirection}</p>
         <p>Feels like ${station.windChill}</p>
+        <p>Max: ${station.maxWind}</p>
+        <p>Min: ${station.minWind}</p>
     </article>
     <article class="station-card">
-        <h3 class="card-title">Pressure</h3>
-        <p>${station.pressure}</p>
+        <div class="card-header">
+            <h3 class="card-title">Pressure</h3>
+            <i class="fas fa-compress-arrows-alt fa-3x"></i>
+        </div>
+        <p>${station.pressure} hpa</p>
+        <p>Max: ${station.maxPressure}</p>
+        <p>Min: ${station.minPressure}</p>
     </article>
 </section>
 
 <table class="min-w-full text-right">
     <thead class="bg-purple-100 font-bold text-purple-500">
-        <tr class="">
-            <th class="p-2 text-left">Date/Time</th>
-            <th class="p-2">Code</th>
-            <th class="p-2">Temperature</th>
-            <th class="p-2">Wind Speed</th>
-            <th class="p-2">Wind Direction</th>
-            <th class="p-2">Pressure</th>
-            <th class="p-2">Actions</th>
-        </tr>
+    <tr class="">
+        <th class="p-2 text-left">Date/Time</th>
+        <th class="p-2">Code</th>
+        <th class="p-2">Temperature</th>
+        <th class="p-2">Wind Speed</th>
+        <th class="p-2">Wind Direction</th>
+        <th class="p-2">Pressure</th>
+        <th class="p-2">Actions</th>
+    </tr>
     </thead>
     <tbody>
 
-        #{list items:station.readings, as:'reading'}
-        <tr class="hover:bg-gray-100 border-b-0 border-purple-500 hover:border-b-1 hover:border-gray-500">
-            <td class="text-left">2021-01-20 10:21:15</td>
-            <td>${reading.code}</td>
-            <td>${reading.temperature}C</td>
-            <td>${reading.windSpeed}km/h</td>
-            <td>${reading.windDirection}</td>
-            <td>${reading.pressure}</td>
-            <td>Del</td>
-        </tr>
-        #{/list}
+    #{list items:station.readings, as:'reading'}
+    <tr class="hover:bg-gray-100 border-b-0 border-purple-500 hover:border-b-1 hover:border-gray-500">
+        <td class="text-left">${reading.date}</td>
+        <td>${reading.code}</td>
+        <td>${reading.temperature}C</td>
+        <td>${reading.windSpeed}km/h</td>
+        <td>${reading.windDirection}</td>
+        <td>${reading.pressure}</td>
+        <td>Del</td>
+    </tr>
+    #{/list}
 
     </tbody>
 </table>

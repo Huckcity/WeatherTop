@@ -1,7 +1,10 @@
 package utils;
 
+import models.Reading;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.List;
 
 public class StationUtils {
 
@@ -79,6 +82,21 @@ public class StationUtils {
 
         return weatherCodes.get(code);
 
+    }
+
+    public static String weatherIcon(int code) {
+
+        HashMap<Integer, String> weatherIcons = new HashMap<>();
+        weatherIcons.put(100, "fa-sun");
+        weatherIcons.put(200, "fa-cloud-sun");
+        weatherIcons.put(300, "fa-cloud");
+        weatherIcons.put(400, "fa-cloud-rain");
+        weatherIcons.put(500, "fa-cloud-showers-heavy");
+        weatherIcons.put(600, "fa-tint");
+        weatherIcons.put(700, "fa-snowflake");
+        weatherIcons.put(800, "fa-poo-storm");
+
+        return weatherIcons.get(code);
     }
 
 }
