@@ -1,8 +1,0 @@
-02 May 2021 19:13:23,734 INFO  ~ Starting C:\src\weathertop
-02 May 2021 19:13:23,967 WARN  ~ You're running Play! in DEV mode
-02 May 2021 19:13:24,299 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-02 May 2021 19:13:27,342 WARN  ~ Cannot replace DATABASE_URL in configuration (prod.db=${DATABASE_URL})
-02 May 2021 19:13:28,476 INFO  ~ HikariPool-1 - Starting...
-02 May 2021 19:13:28,493 INFO  ~ HikariPool-1 - Start completed.
-02 May 2021 19:13:28,502 INFO  ~ Connected to jdbc:h2:mem:play for default
-02 May 2021 19:13:29,513 INFO  ~ Application 'weathertop' is now started !
