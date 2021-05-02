@@ -22,9 +22,9 @@ public class Station extends Model {
     public double fahrenheit;
     public int windBeaufort;
     public int pressure;
-    public String weatherCode;
-    public String windDirection;
     public String windChill;
+    public String windDirection;
+    public String weatherCode;
     public String weatherIcon;
 
     public double maxTemp;

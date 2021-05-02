@@ -1,10 +1,7 @@
 package utils;
 
-import models.Reading;
-
 import java.text.DecimalFormat;
 import java.util.HashMap;
-import java.util.List;
 
 public class StationUtils {
 
@@ -15,7 +12,6 @@ public class StationUtils {
     }
 
     public static String calcWindDir(double windDirection) {
-        if (windDirection >= 348.75 && windDirection <= 11.25) return "North";
         if (windDirection >= 11.25 && windDirection <= 33.75) return "North North East";
         if (windDirection >= 33.75 && windDirection <= 56.25) return "North East";
         if (windDirection >= 56.25 && windDirection <= 78.75) return "East North East";
@@ -31,6 +27,7 @@ public class StationUtils {
         if (windDirection >= 281.25 && windDirection <= 303.75) return "West North West";
         if (windDirection >= 303.75 && windDirection <= 326.25) return "North West";
         if (windDirection >= 326.25 && windDirection <= 348.75) return "North North West";
+        if (windDirection >= 348.75 && windDirection <= 11.25) return "North";
         return "Unknown";
     }
 
