@@ -1,1 +1,1 @@
-web:    play run -Xmx256M --%prod --http.port=$PORT -Dprecompiled=true
+web:    play run -Xmx256M --%prod --http.port=$PORT
