@@ -1,5 +1,4 @@
 node_modules
-conf/application.conf
 .settings
 eclipse
 documentation
@@ -9,3 +8,4 @@ tmp
 *.iws
 *.iml
 *.ipr
+package.json

@@ -1,0 +1,3 @@
+02 May 2021 18:00:52,848 INFO  ~ Starting C:\src\weathertop
+02 May 2021 18:00:53,070 WARN  ~ You're running Play! in DEV mode
+02 May 2021 18:00:53,411 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
