@@ -8,12 +8,10 @@
 #{list items:stations, as:'station'}
 
 <section class="group m-2 p-2 border-2 rounded-lg hover:bg-gray-100 hover:border-gray-400 transition">
-    <h1 class="group-hover:text-purple-600 font-bold text-2xl text-purple-500">${station.name}</h1>
-    <ul class="text-gray-400 group-hover:text-gray-600">
-        <li>Lat: ${station.latitude}</li>
-        <li>Lng: ${station.longitude}</li>
-    </ul>
+
+    #{stationcards station:station/}
     <a href="/station/${station.id}">View</a>
+    <a href="/stations/deleteStation/${station.id}">Delete</a>
 </section>
 
 #{/list}

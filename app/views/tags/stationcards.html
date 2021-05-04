@@ -1,24 +1,55 @@
-<section class="flex justify-between space-x-2 my-2">
-    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
-        <h3>${_station.name}</h3>
+<div class="station-header-card">
+    <h3 class="card-title">${_station.name}</h3>
+    <div class="flex">
+        <i class="fas fa-map-marker-alt fa-2x mt-3"></i>
+        <ul class="text-sm mt-1 ml-3">
+            <li>${_station.latitude}</li>
+            <li>${_station.longitude}</li>
+        </ul>
+    </div>
+</div>
+
+<section class="flex flex-wrap justify-around md:flex-nowrap">
+    <article class="station-card">
+        <div class="card-header">
+            <h3 class="card-title">Weather</h3>
+            <i class="fas ${_station.stats.weatherIcon} fa-3x"></i>
+        </div>
+        <p>${_station.stats.weatherCode}</p>
     </article>
-    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
-        <h3>Weather</h3>
-        <p>${_station.weatherCode}</p>
+    <article class="station-card">
+        <div class="card-header">
+            <h3 class="card-title">Temp</h3>
+            <i class="fas fa-temperature-low fa-3x"></i>
+        </div>
+        <p>${_station.stats.celsius}C</p>
+        <p>${_station.stats.fahrenheit}F</p>
+        <p>Max: ${_station.stats.maxTemp}</p>
+        <p>Min: ${_station.stats.minTemp}</p>
+        <p><i class="fas fa-arrow-${_station.stats.tempTrend} fa-3x"></i></p>
     </article>
-    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
-        <h3>Temp</h3>
-        <p>${_station.fahrenheit}F</p>
-        <p>${_station.celsius}C</p>
+    <article class="station-card">
+        <div class="card-header">
+            <h3 class="card-title">Wind</h3>
+            <i class="fas fa-wind fa-3x"></i>
+        </div>
+        <p>${_station.stats.windBeaufort} bft</p>
+        <p>Direction: ${_station.stats.windDirection}</p>
+        <p>Feels like ${_station.stats.windChill}C</p>
+        <p>Max: ${_station.stats.maxWind}km/h</p>
+        <p>Min: ${_station.stats.minWind}km/h</p>
+        <p><i class="fas fa-arrow-${_station.stats.windTrend} fa-3x"></i></p>
     </article>
-    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
-        <h3>Wind</h3>
-        <p>${_station.windBeaufort}bft</p>
-        <p>${_station.windDirection}</p>
-        <p>${_station.windChill}</p>
-    </article>
-    <article class="bg-purple-800 hover:bg-purple-700 rounded text-purple-100 w-1/5 px-2 py-6">
-        <h3>Pressure</h3>
-        <p>${_station.pressure} hpa</p>
+    <article class="station-card">
+        <div class="card-header">
+            <h3 class="card-title">Pressure</h3>
+            <i class="fas fa-compress-arrows-alt fa-3x"></i>
+        </div>
+        <p>${_station.stats.pressure} hpa</p>
+        <div class="">
+            <p>Max: ${_station.stats.maxPressure} hpa</p>
+            <p>Min: ${_station.stats.minPressure} hpa</p>
+            <p><i class="fas fa-arrow-${_station.stats.presTrend} fa-3x"></i></p>
+        </div>
     </article>
 </section>

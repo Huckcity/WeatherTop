@@ -14,6 +14,7 @@ public class Reading extends Model {
     public double windSpeed;
     public int pressure;
     public int windDirection;
+    public String prettyTime;
 
     public Reading(Date date, int code, double temperature, double windSpeed, int pressure, int windDirection) {
         this.date = date;

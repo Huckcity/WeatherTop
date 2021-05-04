@@ -18,7 +18,7 @@ public class StationCtrl extends Controller {
             Member loggedInUser = Accounts.getLoggedInMember();
             List<Station> stations = loggedInUser.stations;
             for (Station station : stations) {
-                calcStationDetails(station);
+                station.stats = calcStationDetails(station);
             }
             render("stations.html", loggedInUser, stations);
         } catch (Exception e) {
@@ -31,8 +31,8 @@ public class StationCtrl extends Controller {
         try {
             Member loggedInUser = Accounts.getLoggedInMember();
             Station station = Station.findById(id);
-            StationDetails stats = calcStationDetails(station);
-            render("station.html", station, stats);
+            station.stats = calcStationDetails(station);
+            render("station.html", station);
         } catch (Exception e) {
             Logger.info("Failed to load station: " + e.toString());
             render("errors/404.html");
@@ -51,6 +51,21 @@ public class StationCtrl extends Controller {
         } catch (Exception e) {
             Logger.info("Failed to add station: " + e.toString());
             redirect("errors/404.html");
+        }
+    }
+
+    public static void deleteStation(Long id) {
+        try {
+            String memberId = session.get("logged_in_id");
+            Member member = Member.findById(Long.parseLong(memberId));
+            Station station = Station.findById(id);
+            member.stations.remove(station);
+            member.save();
+            station.delete();
+            redirect("/stations");
+        } catch (Exception e) {
+            Logger.info("Failed to delete station: " + e.toString());
+            redirect("/stations");
         }
     }
 }

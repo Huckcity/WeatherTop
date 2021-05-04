@@ -5,6 +5,9 @@ import models.Station;
 import play.Logger;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class StationUtils {
             stats.celsius = latest.temperature;
             stats.pressure = latest.pressure;
 
-            // get max/min temp, windspeed, pressure
+            // get max/min temp, windspeed, pressure and set prettyTime
 
             for (Reading reading : readings) {
                 if (reading.temperature < stats.minTemp) {
@@ -47,6 +50,9 @@ public class StationUtils {
                 if (reading.pressure > stats.maxPressure) {
                     stats.maxPressure = reading.pressure;
                 }
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm");
+                reading.prettyTime = formatter.format(reading.date);
             }
 
             // get trends

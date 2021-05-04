@@ -15,6 +15,7 @@ POST    /authenticate                           Accounts.authenticateUser
 GET     /stations                               StationCtrl.stations
 GET     /station/{id}                           StationCtrl.station
 POST    /stations/addstation                    StationCtrl.addStation
+GET     /stations/deleteStation/{id}            StationCtrl.deleteStation
 
 POST    /station/{id}/addReading                ReadingCtrl.addReading
 GET     /station/{sid}/deleteReading/{rid}      ReadingCtrl.deleteReading

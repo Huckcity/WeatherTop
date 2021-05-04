@@ -3,61 +3,7 @@
 
 #{menu id:"stations"/}
 
-<div class="station-header-card">
-    <h3 class="card-title">${station.name}</h3>
-    <div class="flex">
-        <i class="fas fa-map-marker-alt fa-2x mt-3"></i>
-        <ul class="text-sm mt-1 ml-3">
-            <li>${station.latitude}</li>
-            <li>${station.longitude}</li>
-        </ul>
-    </div>
-</div>
-
-<section class="flex flex-wrap justify-around md:flex-nowrap">
-    <article class="station-card">
-        <div class="card-header">
-            <h3 class="card-title">Weather</h3>
-            <i class="fas ${stats.weatherIcon} fa-3x"></i>
-        </div>
-        <p>${stats.weatherCode}</p>
-    </article>
-    <article class="station-card">
-        <div class="card-header">
-            <h3 class="card-title">Temp</h3>
-            <i class="fas fa-temperature-low fa-3x"></i>
-        </div>
-        <p>${stats.celsius}C</p>
-        <p>${stats.fahrenheit}F</p>
-        <p>Max: ${stats.maxTemp}</p>
-        <p>Min: ${stats.minTemp}</p>
-        <p><i class="fas fa-arrow-${stats.tempTrend} fa-3x"></i></p>
-    </article>
-    <article class="station-card">
-        <div class="card-header">
-            <h3 class="card-title">Wind</h3>
-            <i class="fas fa-wind fa-3x"></i>
-        </div>
-        <p>${stats.windBeaufort} bft</p>
-        <p>Direction: ${stats.windDirection}</p>
-        <p>Feels like ${stats.windChill}C</p>
-        <p>Max: ${stats.maxWind}km/h</p>
-        <p>Min: ${stats.minWind}km/h</p>
-        <p><i class="fas fa-arrow-${stats.windTrend} fa-3x"></i></p>
-    </article>
-    <article class="station-card">
-        <div class="card-header">
-            <h3 class="card-title">Pressure</h3>
-            <i class="fas fa-compress-arrows-alt fa-3x"></i>
-        </div>
-        <p>${stats.pressure} hpa</p>
-        <div class="">
-            <p>Max: ${stats.maxPressure} hpa</p>
-            <p>Min: ${stats.minPressure} hpa</p>
-            <p><i class="fas fa-arrow-${stats.presTrend} fa-3x"></i></p>
-        </div>
-    </article>
-</section>
+#{stationCards station:station /}
 
 <table class="min-w-full text-right">
     <thead class="bg-purple-100 font-bold text-purple-500">
@@ -74,15 +20,15 @@
     <tbody>
 
     #{list items:station.readings, as:'reading'}
-    <tr class="hover:bg-gray-100 border-b-0 border-purple-500 hover:border-b-1 hover:border-gray-500">
-        <td class="text-left">${reading.date}</td>
+    <tr class="hover:bg-gray-100 border-b-2 border-purple-100 hover:border-b-1 hover:border-gray-500">
+        <td class="text-left">${reading.prettyTime}</td>
         <td>${reading.code}</td>
         <td>${reading.temperature}C</td>
         <td>${reading.windSpeed}km/h</td>
         <td>${reading.windDirection}</td>
         <td>${reading.pressure}</td>
         <td>
-            <a href="/station/${station.id}/deleteReading/${reading.id}" class="ui icon button">
+            <a href="/station/${station.id}/deleteReading/${reading.id}" class="mr-4">
                 <i class="fas fa-trash-alt"></i>
             </a>
         </td>
