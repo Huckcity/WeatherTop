@@ -6,17 +6,18 @@
 GET     /                                       Start.index
 GET     /about                                  Start.about
 
-GET     /stations                               StationCtrl.stations
-GET     /station/{id}                           StationCtrl.station
-
 GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 GET     /logout                                 Accounts.logout
 POST    /register                               Accounts.register
 POST    /authenticate                           Accounts.authenticateUser
 
+GET     /stations                               StationCtrl.stations
+GET     /station/{id}                           StationCtrl.station
 POST    /stations/addstation                    StationCtrl.addStation
-POST    /station/{id}/addReading                StationCtrl.addReading
+
+POST    /station/{id}/addReading                ReadingCtrl.addReading
+GET     /station/{sid}/deleteReading/{rid}      ReadingCtrl.deleteReading
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

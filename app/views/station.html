@@ -18,40 +18,43 @@
     <article class="station-card">
         <div class="card-header">
             <h3 class="card-title">Weather</h3>
-            <i class="fas ${station.weatherIcon} fa-3x"></i>
+            <i class="fas ${stats.weatherIcon} fa-3x"></i>
         </div>
-        <p>${station.weatherCode}</p>
+        <p>${stats.weatherCode}</p>
     </article>
     <article class="station-card">
         <div class="card-header">
             <h3 class="card-title">Temp</h3>
             <i class="fas fa-temperature-low fa-3x"></i>
         </div>
-        <p>${station.celsius}C</p>
-        <p>${station.fahrenheit}F</p>
-        <p>Max: ${station.maxTemp}</p>
-        <p>Min: ${station.minTemp}</p>
+        <p>${stats.celsius}C</p>
+        <p>${stats.fahrenheit}F</p>
+        <p>Max: ${stats.maxTemp}</p>
+        <p>Min: ${stats.minTemp}</p>
+        <p><i class="fas fa-arrow-${stats.tempTrend} fa-3x"></i></p>
     </article>
     <article class="station-card">
         <div class="card-header">
             <h3 class="card-title">Wind</h3>
             <i class="fas fa-wind fa-3x"></i>
         </div>
-        <p>${station.windBeaufort} bft</p>
-        <p>Direction: ${station.windDirection}</p>
-        <p>Feels like ${station.windChill}C</p>
-        <p>Max: ${station.maxWind}C</p>
-        <p>Min: ${station.minWind}C</p>
+        <p>${stats.windBeaufort} bft</p>
+        <p>Direction: ${stats.windDirection}</p>
+        <p>Feels like ${stats.windChill}C</p>
+        <p>Max: ${stats.maxWind}km/h</p>
+        <p>Min: ${stats.minWind}km/h</p>
+        <p><i class="fas fa-arrow-${stats.windTrend} fa-3x"></i></p>
     </article>
     <article class="station-card">
         <div class="card-header">
             <h3 class="card-title">Pressure</h3>
             <i class="fas fa-compress-arrows-alt fa-3x"></i>
         </div>
-        <p>${station.pressure} hpa</p>
+        <p>${stats.pressure} hpa</p>
         <div class="">
-            <p>Max: ${station.maxPressure} hpa</p>
-            <p>Min: ${station.minPressure} hpa</p>
+            <p>Max: ${stats.maxPressure} hpa</p>
+            <p>Min: ${stats.minPressure} hpa</p>
+            <p><i class="fas fa-arrow-${stats.presTrend} fa-3x"></i></p>
         </div>
     </article>
 </section>
@@ -78,7 +81,11 @@
         <td>${reading.windSpeed}km/h</td>
         <td>${reading.windDirection}</td>
         <td>${reading.pressure}</td>
-        <td>Del</td>
+        <td>
+            <a href="/station/${station.id}/deleteReading/${reading.id}" class="ui icon button">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+        </td>
     </tr>
     #{/list}
 
@@ -103,7 +110,7 @@
         <label for="temperature">Temperature</label>
         <input type="number" id="temperature" name="temperature" placeholder=" 5.0C" class="form-input" step="any">
         <label for="windSpeed">Wind Speed</label>
-        <input type="numer" id="windSpeed" name="windSpeed" placeholder=" 10.5kmph" class="form-input">
+        <input type="number" id="windSpeed" name="windSpeed" placeholder=" 10.5kmph" class="form-input" step="any">
         <label for="windDirection">Wind Direction</label>
         <input type="number" id="windDirection" name="windDirection" placeholder=" 180deg" class="form-input">
         <label for="pressure">Pressure</label>

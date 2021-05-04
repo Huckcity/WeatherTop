@@ -1,17 +1,86 @@
 package utils;
 
+import models.Reading;
+import models.Station;
+import play.Logger;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.List;
 
 public class StationUtils {
 
-    public static String calcWindChill(double t, double v) {
-        double wc =  13.12 + 0.6215*t - 11.37*(Math.pow(v, 0.16)) + 0.3965*t*(Math.pow(v, 0.16));
+    public static StationDetails calcStationDetails(Station s) {
+
+        StationDetails stats = new StationDetails();
+
+        try {
+            List<Reading> readings = s.readings;
+            Reading latest = readings.get(readings.size() - 1);
+            stats.weatherCode = codeToText(latest.code);
+            stats.fahrenheit = calcFahrenheit(latest.temperature);
+            stats.windBeaufort = calcBeaufort(latest.windSpeed);
+            stats.windDirection = calcWindDir(latest.windDirection);
+            stats.windChill = calcWindChill(latest.temperature, latest.windSpeed);
+            stats.weatherIcon = weatherIcon(latest.code);
+            stats.celsius = latest.temperature;
+            stats.pressure = latest.pressure;
+
+            // get max/min temp, windspeed, pressure
+
+            for (Reading reading : readings) {
+                if (reading.temperature < stats.minTemp) {
+                    stats.minTemp = reading.temperature;
+                }
+                if (reading.temperature > stats.maxTemp) {
+                    stats.maxTemp = reading.temperature;
+                }
+                if (reading.windSpeed < stats.minWind) {
+                    stats.minWind = reading.windSpeed;
+                }
+                if (reading.windSpeed > stats.maxWind) {
+                    stats.maxWind = reading.windSpeed;
+                }
+                if (reading.pressure < stats.minPressure) {
+                    stats.minPressure = reading.pressure;
+                }
+                if (reading.pressure > stats.maxPressure) {
+                    stats.maxPressure = reading.pressure;
+                }
+            }
+
+            // get trends
+
+            double[] lastThreeTemps = new double[3];
+            double[] lastThreeWinds = new double[3];
+            double[] lastThreePress = new double[3];
+
+            if (readings.size() > 2) {
+                for (int i = 0; i < 3; i++) {
+                    lastThreeTemps[i] = readings.get(readings.size() - (i + 1)).temperature;
+                    lastThreeWinds[i] = readings.get(readings.size() - (i + 1)).windSpeed;
+                    lastThreePress[i] = readings.get(readings.size() - (i + 1)).pressure;
+                }
+            }
+
+            stats.tempTrend = checkTrend(lastThreeTemps);
+            stats.windTrend = checkTrend(lastThreeWinds);
+            stats.presTrend = checkTrend(lastThreePress);
+
+        } catch (Exception e) {
+            Logger.info("Failed to populate station vals: " + e.toString());
+        }
+
+        return stats;
+    }
+
+    private static String calcWindChill(double t, double v) {
+        double wc = 13.12 + 0.6215 * t - 11.37 * (Math.pow(v, 0.16)) + 0.3965 * t * (Math.pow(v, 0.16));
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(wc);
     }
 
-    public static String calcWindDir(double windDirection) {
+    private static String calcWindDir(double windDirection) {
         if (windDirection >= 11.25 && windDirection <= 33.75) return "North North East";
         if (windDirection >= 33.75 && windDirection <= 56.25) return "North East";
         if (windDirection >= 56.25 && windDirection <= 78.75) return "East North East";
@@ -31,7 +100,7 @@ public class StationUtils {
         return "Unknown";
     }
 
-    public static int calcBeaufort(double windSpeed) {
+    private static int calcBeaufort(double windSpeed) {
         if (windSpeed <= 1) {
             return 0;
         } else if (windSpeed <= 5) {
@@ -61,11 +130,11 @@ public class StationUtils {
         }
     }
 
-    public static int calcFahrenheit(double temperature) {
-        return (int)(temperature*(9/5) + 32);
+    private static int calcFahrenheit(double temperature) {
+        return (int) (temperature * (9 / 5) + 32);
     }
 
-    public static String codeToText(int code) {
+    private static String codeToText(int code) {
 
         HashMap<Integer, String> weatherCodes = new HashMap<>();
         weatherCodes.put(100, "Clear");
@@ -81,7 +150,7 @@ public class StationUtils {
 
     }
 
-    public static String weatherIcon(int code) {
+    private static String weatherIcon(int code) {
 
         HashMap<Integer, String> weatherIcons = new HashMap<>();
         weatherIcons.put(100, "fa-sun");
@@ -94,6 +163,17 @@ public class StationUtils {
         weatherIcons.put(800, "fa-poo-storm");
 
         return weatherIcons.get(code);
+    }
+
+    public static String checkTrend(double[] vals) {
+
+        if (vals[0] > vals[1] && vals[1] > vals[2]) {
+            return "up";
+        }
+        if (vals[0] < vals[1] && vals[1] < vals[2]) {
+            return "down";
+        }
+        return "none";
     }
 
 }
