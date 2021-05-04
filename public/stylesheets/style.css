@@ -635,9 +635,6 @@ video {
 	margin-right: calc(0.5rem * var(--tw-space-x-reverse));
 	margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.overflow-x-scroll {
-	overflow-x: scroll;
-}
 .rounded-lg {
 	border-radius: 0.5rem;
 }
@@ -776,31 +773,12 @@ h1, h2, h3, h4 {
 	background-color: rgba(109, 40, 217, var(--tw-bg-opacity));
 }
 
-.card-title {
-	font-size: 1rem;
-	line-height: 1.5rem;
-	font-weight: 700;
-	text-transform: uppercase;
-}
-
-@media (min-width: 768px) {
-
-	.card-title {
-		font-size: 1.125rem;
-		line-height: 1.75rem;
-	}
-}
-
-.card-header {
-	display: flex;
-	justify-content: space-between;
-}
-
 .station-card {
 	margin: 0.25rem;
 	height: 12rem;
 	width: 41.666667%;
 	flex: 1 1 auto;
+	justify-content: space-around;
 	border-radius: 0.5rem;
 	--tw-bg-opacity: 1;
 	background-color: rgba(91, 33, 182, var(--tw-bg-opacity));
@@ -819,6 +797,26 @@ h1, h2, h3, h4 {
 .station-card:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(109, 40, 217, var(--tw-bg-opacity));
+}
+
+.card-title {
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+
+	.card-title {
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+	}
+}
+
+.card-header {
+	display: flex;
+	justify-content: space-between;
 }
 
 /**** FORMS ****/
@@ -1116,10 +1114,6 @@ h1, h2, h3, h4 {
 
 	.md\:flex-nowrap {
 		flex-wrap: nowrap;
-	}
-
-	.md\:flex-wrap {
-		flex-wrap: wrap;
 	}
 
 	.md\:justify-around {

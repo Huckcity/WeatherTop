@@ -15,16 +15,16 @@ h4 {
     @apply bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 transition
 }
 
+.station-card {
+    @apply flex-auto justify-around text-sm bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48 transition;
+}
+
 .card-title {
     @apply text-base md:text-lg font-bold uppercase;
 }
 
 .card-header {
     @apply flex justify-between;
-}
-
-.station-card {
-    @apply flex-auto text-sm bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48 transition;
 }
 
 /**** FORMS ****/

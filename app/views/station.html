@@ -38,10 +38,10 @@
             <i class="fas fa-wind fa-3x"></i>
         </div>
         <p>${station.windBeaufort} bft</p>
-        <p>${station.windDirection}</p>
-        <p>Feels like ${station.windChill}</p>
-        <p>Max: ${station.maxWind}</p>
-        <p>Min: ${station.minWind}</p>
+        <p>Direction: ${station.windDirection}</p>
+        <p>Feels like ${station.windChill}C</p>
+        <p>Max: ${station.maxWind}C</p>
+        <p>Min: ${station.minWind}C</p>
     </article>
     <article class="station-card">
         <div class="card-header">
@@ -49,8 +49,10 @@
             <i class="fas fa-compress-arrows-alt fa-3x"></i>
         </div>
         <p>${station.pressure} hpa</p>
-        <p>Max: ${station.maxPressure}</p>
-        <p>Min: ${station.minPressure}</p>
+        <div class="">
+            <p>Max: ${station.maxPressure} hpa</p>
+            <p>Min: ${station.minPressure} hpa</p>
+        </div>
     </article>
 </section>
 
