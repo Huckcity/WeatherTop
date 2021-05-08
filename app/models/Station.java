@@ -15,7 +15,7 @@ public class Station extends Model {
 
     public String name;
     @OneToMany(cascade = CascadeType.ALL)
-    public List<Reading> readings = new ArrayList<Reading>();
+    public List<Reading> readings = new ArrayList<>();
     public double latitude;
     public double longitude;
     public StationDetails stats;
@@ -24,5 +24,9 @@ public class Station extends Model {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

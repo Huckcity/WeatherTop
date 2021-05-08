@@ -16,7 +16,7 @@ h4 {
 }
 
 .station-card {
-    @apply flex-auto justify-around text-sm bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48 transition;
+    @apply flex flex-auto justify-around text-sm bg-purple-800 hover:bg-purple-700 rounded-lg text-purple-100 m-1 p-6 w-5/12 h-48 transition;
 }
 
 .card-title {

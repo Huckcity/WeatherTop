@@ -20,6 +20,15 @@ public class StationCtrl extends Controller {
             for (Station station : stations) {
                 station.stats = calcStationDetails(station);
             }
+
+//            Collections.sort(stations,
+//                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
+
+//            Comparator<Station> byName = Comparator.comparing(Station::getName);
+//            stations.sort(byName);
+
+            stations.sort(Comparator.comparing(Station::getName, String.CASE_INSENSITIVE_ORDER));
+
             render("stations.html", loggedInUser, stations);
         } catch (Exception e) {
             Logger.info("Failed to load all stations: " + e.toString());

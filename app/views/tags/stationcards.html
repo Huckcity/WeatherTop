@@ -18,38 +18,42 @@
         <p>${_station.stats.weatherCode}</p>
     </article>
     <article class="station-card">
-        <div class="card-header">
+        <div class="flex flex-col">
             <h3 class="card-title">Temp</h3>
+            <p>${_station.stats.celsius}C</p>
+            <p>${_station.stats.fahrenheit}F</p>
+            <p>Max: ${_station.stats.maxTemp}</p>
+            <p>Min: ${_station.stats.minTemp}</p>
+        </div>
+        <div class="flex flex-col">
+            <i class="fas fa-arrow-${_station.stats.tempTrend} fa-3x"></i>
             <i class="fas fa-temperature-low fa-3x"></i>
         </div>
-        <p>${_station.stats.celsius}C</p>
-        <p>${_station.stats.fahrenheit}F</p>
-        <p>Max: ${_station.stats.maxTemp}</p>
-        <p>Min: ${_station.stats.minTemp}</p>
-        <p><i class="fas fa-arrow-${_station.stats.tempTrend} fa-3x"></i></p>
     </article>
     <article class="station-card">
-        <div class="card-header">
+        <div class="flex flex-col">
             <h3 class="card-title">Wind</h3>
+            <p>${_station.stats.windBeaufort} bft</p>
+            <p>${_station.stats.windDirection}</p>
+            <p>Feels like ${_station.stats.windChill}C</p>
+            <p>Max: ${_station.stats.maxWind}km/h</p>
+            <p>Min: ${_station.stats.minWind}km/h</p>
+        </div>
+        <div class="flex flex-col">
+            <i class="fas fa-arrow-${_station.stats.windTrend} fa-3x"></i>
             <i class="fas fa-wind fa-3x"></i>
         </div>
-        <p>${_station.stats.windBeaufort} bft</p>
-        <p>Direction: ${_station.stats.windDirection}</p>
-        <p>Feels like ${_station.stats.windChill}C</p>
-        <p>Max: ${_station.stats.maxWind}km/h</p>
-        <p>Min: ${_station.stats.minWind}km/h</p>
-        <p><i class="fas fa-arrow-${_station.stats.windTrend} fa-3x"></i></p>
     </article>
     <article class="station-card">
-        <div class="card-header">
+        <div class="flex flex-col">
             <h3 class="card-title">Pressure</h3>
-            <i class="fas fa-compress-arrows-alt fa-3x"></i>
-        </div>
-        <p>${_station.stats.pressure} hpa</p>
-        <div class="">
+            <p>${_station.stats.pressure} hpa</p>
             <p>Max: ${_station.stats.maxPressure} hpa</p>
             <p>Min: ${_station.stats.minPressure} hpa</p>
-            <p><i class="fas fa-arrow-${_station.stats.presTrend} fa-3x"></i></p>
+        </div>
+        <div class="flex flex-col">
+            <i class="fas fa-compress-arrows-alt fa-3x"></i>
+            <i class="fas fa-arrow-${_station.stats.presTrend} fa-3x"></i>
         </div>
     </article>
 </section>
