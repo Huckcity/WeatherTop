@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Stations' /}
+
+#{menu id:"public", member:loggedInUser/}
+
+#{if publicStations.size() > 0}
+
+#{list items:publicStations, as:'station'}
+
+#{stationsummary station:station /}
+
+#{/list}
+
+#{/if}
+#{else}
+
+<section class="w-3/4 mx-auto">
+    <h1>No Public Stations</h1>
+</section>
+
+#{/else}

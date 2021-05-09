@@ -41,10 +41,26 @@ public class StationCtrl extends Controller {
             Member loggedInUser = Accounts.getLoggedInMember();
             Station station = Station.findById(id);
             station.stats = calcStationDetails(station);
-            render("station.html", station);
+            render("station.html", station, loggedInUser);
         } catch (Exception e) {
             Logger.info("Failed to load station: " + e.toString());
             render("errors/404.html");
+        }
+    }
+
+    public static void publicStations() {
+        try {
+            Member loggedInUser = Accounts.getLoggedInMember();
+            List<Station> publicStations = Station.findPublicStations();
+            if (publicStations.size() > 0) {
+                for (Station s : publicStations) {
+                    s.stats = calcStationDetails(s);
+                }
+            }
+            render("publicstations.html", publicStations, loggedInUser);
+        } catch (Exception e) {
+            Logger.info("failed to get public stations: " + e.toString());
+            redirect("/stations");
         }
     }
 
@@ -74,6 +90,18 @@ public class StationCtrl extends Controller {
             redirect("/stations");
         } catch (Exception e) {
             Logger.info("Failed to delete station: " + e.toString());
+            redirect("/stations");
+        }
+    }
+
+    public static void setStationPublic(Long id) {
+        try {
+            Station station = Station.findById(id);
+            station.setVisibility(station.publicStation);
+            station.save();
+            redirect("/stations");
+        } catch (Exception e) {
+            Logger.info("failed to set station public: " + e.toString());
             redirect("/stations");
         }
     }

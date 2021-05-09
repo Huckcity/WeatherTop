@@ -1,0 +1,26 @@
+<section class="group m-2 p-2 border-2 rounded-lg hover:bg-gray-100 hover:border-gray-400 transition">
+    #{stationcards station:_station/}
+    <aside class="flex w-full px-2 space-x-2">
+        <a href="/station/${_station.id}">
+            <button class="view-button">
+                <i class="fas fa-folder-open"></i> View
+            </button>
+        </a>
+
+        <form action="/station/setpublic/${_station.id}" method="post">
+            <button class="public-button">
+                #{if _station.publicStation}
+                <i class="fas fa-eye-slash"></i> Make Private
+                #{/if}
+                #{else}
+                <i class="fas fa-eye"></i> Make Public
+                #{/else}
+            </button>
+        </form>
+        <a href="/stations/deleteStation/${_station.id}">
+            <button class="delete-button">
+                <i class="fas fa-trash-alt"></i> Delete
+            </button>
+        </a>
+    </aside>
+</section>

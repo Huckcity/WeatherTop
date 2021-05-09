@@ -9,16 +9,20 @@ GET     /about                                  Start.about
 GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 GET     /logout                                 Accounts.logout
+GET     /profile                                Accounts.profile
 POST    /register                               Accounts.register
 POST    /authenticate                           Accounts.authenticateUser
+POST    /account/edit                           Accounts.editProfile
 
 GET     /stations                               StationCtrl.stations
-GET     /station/{id}                           StationCtrl.station
+GET     /stations/public                        StationCtrl.publicStations
 POST    /stations/addstation                    StationCtrl.addStation
 GET     /stations/deleteStation/{id}            StationCtrl.deleteStation
 
+GET     /station/{id}                           StationCtrl.station
 POST    /station/{id}/addReading                ReadingCtrl.addReading
 GET     /station/{sid}/deleteReading/{rid}      ReadingCtrl.deleteReading
+POST    /station/setpublic/{id}                 StationCtrl.setStationPublic
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -11,49 +11,63 @@
 
 <section class="flex flex-wrap justify-around md:flex-nowrap">
     <article class="station-card">
-        <div class="card-header">
+        <div class="card-section">
             <h3 class="card-title">Weather</h3>
             <i class="fas ${_station.stats.weatherIcon} fa-3x"></i>
         </div>
-        <p>${_station.stats.weatherCode}</p>
+        <div class="card-section">
+            <p>${_station.stats.weatherCode}</p>
+        </div>
     </article>
     <article class="station-card">
-        <div class="flex flex-col">
+        <div class="card-section">
             <h3 class="card-title">Temp</h3>
-            <p>${_station.stats.celsius}C</p>
-            <p>${_station.stats.fahrenheit}F</p>
-            <p>Max: ${_station.stats.maxTemp}</p>
-            <p>Min: ${_station.stats.minTemp}</p>
-        </div>
-        <div class="flex flex-col">
-            <i class="fas fa-arrow-${_station.stats.tempTrend} fa-3x"></i>
             <i class="fas fa-temperature-low fa-3x"></i>
         </div>
+        <div class="card-section">
+            <span>
+                <p>${_station.stats.celsius}C</p>
+                <p>${_station.stats.fahrenheit}F</p>
+                <p>Max: ${_station.stats.maxTemp}</p>
+                <p>Min: ${_station.stats.minTemp}</p>
+            </span>
+            <div class="card-trend">
+                <i class="fas fa-arrow-${_station.stats.tempTrend} fa-2x"></i>
+            </div>
+        </div>
     </article>
     <article class="station-card">
-        <div class="flex flex-col">
+        <div class="card-section">
             <h3 class="card-title">Wind</h3>
-            <p>${_station.stats.windBeaufort} bft</p>
-            <p>${_station.stats.windDirection}</p>
-            <p>Feels like ${_station.stats.windChill}C</p>
-            <p>Max: ${_station.stats.maxWind}km/h</p>
-            <p>Min: ${_station.stats.minWind}km/h</p>
-        </div>
-        <div class="flex flex-col">
-            <i class="fas fa-arrow-${_station.stats.windTrend} fa-3x"></i>
             <i class="fas fa-wind fa-3x"></i>
         </div>
+        <div class="card-section">
+            <span>
+                <p>${_station.stats.windBeaufort} bft</p>
+                <p>${_station.stats.windDirection}</p>
+                <p>Feels like ${_station.stats.windChill}C</p>
+                <p>Max: ${_station.stats.maxWind}km/h</p>
+                <p>Min: ${_station.stats.minWind}km/h</p>
+            </span>
+        </div>
+        <div class="card-trend">
+            <i class="fas fa-arrow-${_station.stats.windTrend} fa-2x"></i>
+        </div>
     </article>
     <article class="station-card">
-        <div class="flex flex-col">
+        <div class="card-section">
             <h3 class="card-title">Pressure</h3>
-            <p>${_station.stats.pressure} hpa</p>
-            <p>Max: ${_station.stats.maxPressure} hpa</p>
-            <p>Min: ${_station.stats.minPressure} hpa</p>
-        </div>
-        <div class="flex flex-col">
             <i class="fas fa-compress-arrows-alt fa-3x"></i>
-            <i class="fas fa-arrow-${_station.stats.presTrend} fa-3x"></i>
+        </div>
+        <div class="card-section">
+            <span>
+                <p>${_station.stats.pressure} hpa</p>
+                <p>Max: ${_station.stats.maxPressure} hpa</p>
+                <p>Min: ${_station.stats.minPressure} hpa</p>
+            </span>
+        </div>
+        <div class="card-trend">
+            <i class="fas fa-arrow-${_station.stats.presTrend} fa-2x"></i>
         </div>
     </article>
 </section>

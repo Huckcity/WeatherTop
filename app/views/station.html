@@ -1,7 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Stations' /}
 
-#{menu id:"stations"/}
+#{menu id:"stations", member:loggedInUser/}
+
+<section class="group m-2 p-2 border-2 rounded-lg">
 
 #{stationcards station:station /}
 
@@ -28,7 +30,7 @@
         <td>${reading.windDirection}</td>
         <td>${reading.pressure}</td>
         <td>
-            <a href="/station/${station.id}/deleteReading/${reading.id}" class="mr-4">
+            <a href="/station/${station.id}/deleteReading/${reading.id}" class="mr-6">
                 <i class="fas fa-trash-alt"></i>
             </a>
         </td>
@@ -39,6 +41,8 @@
 </table>
 
 <hr>
+
+</section>
 
 <section>
     <form action="/station/${station.id}/addReading" method="post" class="form">
