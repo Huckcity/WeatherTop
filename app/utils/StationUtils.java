@@ -16,65 +16,67 @@ public class StationUtils {
     public static StationDetails calcStationDetails(Station s) {
 
         StationDetails stats = new StationDetails();
+        List<Reading> readings = s.readings;
+        if (readings.size() > 0) {
+            Logger.info("attempting to populate station stats");
+            try {
+                Reading latest = readings.get(readings.size() - 1);
+                stats.weatherCode = codeToText(latest.code);
+                stats.fahrenheit = calcFahrenheit(latest.temperature);
+                stats.windBeaufort = calcBeaufort(latest.windSpeed);
+                stats.windDirection = calcWindDir(latest.windDirection);
+                stats.windChill = calcWindChill(latest.temperature, latest.windSpeed);
+                stats.weatherIcon = weatherIcon(latest.code);
+                stats.celsius = latest.temperature;
+                stats.pressure = latest.pressure;
 
-        try {
-            List<Reading> readings = s.readings;
-            Reading latest = readings.get(readings.size() - 1);
-            stats.weatherCode = codeToText(latest.code);
-            stats.fahrenheit = calcFahrenheit(latest.temperature);
-            stats.windBeaufort = calcBeaufort(latest.windSpeed);
-            stats.windDirection = calcWindDir(latest.windDirection);
-            stats.windChill = calcWindChill(latest.temperature, latest.windSpeed);
-            stats.weatherIcon = weatherIcon(latest.code);
-            stats.celsius = latest.temperature;
-            stats.pressure = latest.pressure;
+                // get max/min temp, windspeed, pressure and set prettyTime
 
-            // get max/min temp, windspeed, pressure and set prettyTime
+                for (Reading reading : readings) {
+                    if (reading.temperature < stats.minTemp) {
+                        stats.minTemp = reading.temperature;
+                    }
+                    if (reading.temperature > stats.maxTemp) {
+                        stats.maxTemp = reading.temperature;
+                    }
+                    if (reading.windSpeed < stats.minWind) {
+                        stats.minWind = reading.windSpeed;
+                    }
+                    if (reading.windSpeed > stats.maxWind) {
+                        stats.maxWind = reading.windSpeed;
+                    }
+                    if (reading.pressure < stats.minPressure) {
+                        stats.minPressure = reading.pressure;
+                    }
+                    if (reading.pressure > stats.maxPressure) {
+                        stats.maxPressure = reading.pressure;
+                    }
 
-            for (Reading reading : readings) {
-                if (reading.temperature < stats.minTemp) {
-                    stats.minTemp = reading.temperature;
-                }
-                if (reading.temperature > stats.maxTemp) {
-                    stats.maxTemp = reading.temperature;
-                }
-                if (reading.windSpeed < stats.minWind) {
-                    stats.minWind = reading.windSpeed;
-                }
-                if (reading.windSpeed > stats.maxWind) {
-                    stats.maxWind = reading.windSpeed;
-                }
-                if (reading.pressure < stats.minPressure) {
-                    stats.minPressure = reading.pressure;
-                }
-                if (reading.pressure > stats.maxPressure) {
-                    stats.maxPressure = reading.pressure;
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm");
+                    reading.prettyTime = formatter.format(reading.date);
                 }
 
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm");
-                reading.prettyTime = formatter.format(reading.date);
+                // get trends
+
+                double[] lastThreeTemps = new double[3];
+                double[] lastThreeWinds = new double[3];
+                double[] lastThreePress = new double[3];
+
+                if (readings.size() > 2) {
+                    for (int i = 0; i < 3; i++) {
+                        lastThreeTemps[i] = readings.get(readings.size() - (i + 1)).temperature;
+                        lastThreeWinds[i] = readings.get(readings.size() - (i + 1)).windSpeed;
+                        lastThreePress[i] = readings.get(readings.size() - (i + 1)).pressure;
+                    }
+                }
+
+                stats.tempTrend = checkTrend(lastThreeTemps);
+                stats.windTrend = checkTrend(lastThreeWinds);
+                stats.presTrend = checkTrend(lastThreePress);
+
+            } catch (Exception e) {
+                Logger.info("Failed to populate station vals: " + e.toString());
             }
-
-            // get trends
-
-            double[] lastThreeTemps = new double[3];
-            double[] lastThreeWinds = new double[3];
-            double[] lastThreePress = new double[3];
-
-            if (readings.size() > 2) {
-                for (int i = 0; i < 3; i++) {
-                    lastThreeTemps[i] = readings.get(readings.size() - (i + 1)).temperature;
-                    lastThreeWinds[i] = readings.get(readings.size() - (i + 1)).windSpeed;
-                    lastThreePress[i] = readings.get(readings.size() - (i + 1)).pressure;
-                }
-            }
-
-            stats.tempTrend = checkTrend(lastThreeTemps);
-            stats.windTrend = checkTrend(lastThreeWinds);
-            stats.presTrend = checkTrend(lastThreePress);
-
-        } catch (Exception e) {
-            Logger.info("Failed to populate station vals: " + e.toString());
         }
 
         return stats;
