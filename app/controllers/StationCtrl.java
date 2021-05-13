@@ -7,7 +7,8 @@ import play.mvc.Controller;
 
 import java.util.*;
 
-import static utils.StationUtils.*;
+import utils.StationDetails;
+import utils.StationUtils;
 
 public class StationCtrl extends Controller {
 
@@ -15,21 +16,14 @@ public class StationCtrl extends Controller {
         try {
             Member loggedInUser = Accounts.getLoggedInMember();
             List<Station> stations = loggedInUser.stations;
-            for (Station station : stations) {
-                station.stats = calcStationDetails(station);
-            }
-
-//            Collections.sort(stations,
-//                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
-
-//            Comparator<Station> byName = Comparator.comparing(Station::getName);
-//            stations.sort(byName);
-
+            List<StationDetails> stats = new ArrayList<>();
             stations.sort(Comparator.comparing(Station::getName, String.CASE_INSENSITIVE_ORDER));
-
-            render("stations.html", loggedInUser, stations);
+            for (Station station : stations) {
+                stats.add(StationUtils.calcStationDetails(station));
+            }
+            render("stations.html", loggedInUser, stations, stats);
         } catch (Exception e) {
-            Logger.info("Failed to load all stations: " + e.toString());
+            Logger.info("Failed to load all stations: " + e);
             render("errors/404.html");
         }
     }
@@ -38,10 +32,10 @@ public class StationCtrl extends Controller {
         try {
             Member loggedInUser = Accounts.getLoggedInMember();
             Station station = Station.findById(id);
-            station.stats = calcStationDetails(station);
-            render("station.html", station, loggedInUser);
+            StationDetails stats = StationUtils.calcStationDetails(station);
+            render("station.html", station, stats, loggedInUser);
         } catch (Exception e) {
-            Logger.info("Failed to load station: " + e.toString());
+            Logger.info("Failed to load station: " + e);
             render("errors/404.html");
         }
     }
@@ -50,14 +44,15 @@ public class StationCtrl extends Controller {
         try {
             Member loggedInUser = Accounts.getLoggedInMember();
             List<Station> publicStations = Station.findPublicStations();
+            List<StationDetails> stats = new ArrayList<>();
             if (publicStations.size() > 0) {
                 for (Station s : publicStations) {
-                    s.stats = calcStationDetails(s);
+                    stats.add(StationUtils.calcStationDetails(s));
                 }
             }
-            render("publicstations.html", publicStations, loggedInUser);
+            render("publicstations.html", publicStations, stats, loggedInUser);
         } catch (Exception e) {
-            Logger.info("failed to get public stations: " + e.toString());
+            Logger.info("failed to get public stations: " + e);
             redirect("/stations");
         }
     }
@@ -72,7 +67,7 @@ public class StationCtrl extends Controller {
             Logger.info("adding station" + station + " to user " + loggedInUser.lastName);
             redirect("/stations");
         } catch (Exception e) {
-            Logger.info("Failed to add station: " + e.toString());
+            Logger.info("Failed to add station: " + e);
             redirect("errors/404.html");
         }
     }
@@ -87,7 +82,7 @@ public class StationCtrl extends Controller {
             station.delete();
             redirect("/stations");
         } catch (Exception e) {
-            Logger.info("Failed to delete station: " + e.toString());
+            Logger.info("Failed to delete station: " + e);
             redirect("/stations");
         }
     }
@@ -95,11 +90,11 @@ public class StationCtrl extends Controller {
     public static void setStationPublic(Long id) {
         try {
             Station station = Station.findById(id);
-            station.setVisibility(station.publicStation);
+            station.toggleVisibility();
             station.save();
             redirect("/stations");
         } catch (Exception e) {
-            Logger.info("failed to set station public: " + e.toString());
+            Logger.info("failed to set station public: " + e);
             redirect("/stations");
         }
     }

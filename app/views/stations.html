@@ -3,11 +3,9 @@
 
 #{menu id:"stations", member:loggedInUser/}
 
-<!--<h1 class="text-3xl font-bold text-center">${loggedInUser.firstName}'s Stations</h1>-->
-
 #{list items:stations, as:'station'}
 
-    #{stationsummary station:station /}
+    #{stationsummary station:station, stats:stats.get(station_index-1) /}
 
 #{/list}
 

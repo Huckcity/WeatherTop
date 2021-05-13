@@ -13,10 +13,10 @@
     <article class="station-card">
         <div class="card-section">
             <h3 class="card-title">Weather</h3>
-            <i class="fas ${_station.stats.weatherIcon} fa-3x"></i>
+            <i class="fas ${_stats.weatherIcon} fa-3x"></i>
         </div>
         <div class="card-section">
-            <p>${_station.stats.weatherCode}</p>
+            <p>${_stats.weatherCode}</p>
         </div>
     </article>
     <article class="station-card">
@@ -26,13 +26,13 @@
         </div>
         <div class="card-section">
             <span>
-                <p>${_station.stats.celsius}C</p>
-                <p>${_station.stats.fahrenheit}F</p>
-                <p>Max: ${_station.stats.maxTemp}</p>
-                <p>Min: ${_station.stats.minTemp}</p>
+                <p>${_stats.celsius}C</p>
+                <p>${_stats.fahrenheit}F</p>
+                <p>Max: ${_stats.maxTemp}</p>
+                <p>Min: ${_stats.minTemp}</p>
             </span>
             <div class="card-trend">
-                <i class="fas fa-arrow-${_station.stats.tempTrend} fa-2x"></i>
+                <i class="fas fa-arrow-${_stats.tempTrend} fa-2x"></i>
             </div>
         </div>
     </article>
@@ -43,15 +43,15 @@
         </div>
         <div class="card-section">
             <span>
-                <p>${_station.stats.windBeaufort} bft</p>
-                <p>${_station.stats.windDirection}</p>
-                <p>Feels like ${_station.stats.windChill}C</p>
-                <p>Max: ${_station.stats.maxWind}km/h</p>
-                <p>Min: ${_station.stats.minWind}km/h</p>
+                <p>${_stats.windBeaufort} bft</p>
+                <p>${_stats.windDirection}</p>
+                <p>Feels like ${_stats.windChill}C</p>
+                <p>Max: ${_stats.maxWind}km/h</p>
+                <p>Min: ${_stats.minWind}km/h</p>
             </span>
         </div>
         <div class="card-trend">
-            <i class="fas fa-arrow-${_station.stats.windTrend} fa-2x"></i>
+            <i class="fas fa-arrow-${_stats.windTrend} fa-2x"></i>
         </div>
     </article>
     <article class="station-card">
@@ -61,13 +61,13 @@
         </div>
         <div class="card-section">
             <span>
-                <p>${_station.stats.pressure} hpa</p>
-                <p>Max: ${_station.stats.maxPressure} hpa</p>
-                <p>Min: ${_station.stats.minPressure} hpa</p>
+                <p>${_stats.pressure} hpa</p>
+                <p>Max: ${_stats.maxPressure} hpa</p>
+                <p>Min: ${_stats.minPressure} hpa</p>
             </span>
         </div>
         <div class="card-trend">
-            <i class="fas fa-arrow-${_station.stats.presTrend} fa-2x"></i>
+            <i class="fas fa-arrow-${_stats.presTrend} fa-2x"></i>
         </div>
     </article>
 </section>

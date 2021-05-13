@@ -6,8 +6,6 @@ import play.Logger;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.HashMap;
 import java.util.List;
 
@@ -75,7 +73,7 @@ public class StationUtils {
                 stats.presTrend = checkTrend(lastThreePress);
 
             } catch (Exception e) {
-                Logger.info("Failed to populate station vals: " + e.toString());
+                Logger.info("Failed to populate station vals: " + e);
             }
         }
 

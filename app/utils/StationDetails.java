@@ -1,8 +1,6 @@
 package utils;
 
-import play.db.jpa.Model;
-
-public class StationDetails extends Model {
+public class StationDetails {
 
     public double celsius;
     public double fahrenheit;
