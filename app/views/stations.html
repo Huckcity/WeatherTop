@@ -5,21 +5,21 @@
 
 #{list items:stations, as:'station'}
 
-    #{stationsummary station:station, stats:stats.get(station_index-1) /}
+  #{stationsummary station:station, stats:stats.get(station_index-1) /}
 
 #{/list}
 
 <section class="m-2 p-2 border-2 rounded">
-    <form action="/stations/addstation" method="POST">
+  <form action="/stations/addstation" method="POST">
 
-        <label for="station_name" class="text-sm font-medium text-gray-700">Station Name:</label>
-        <input type="text" name="station_name" id="station_name" class="form-input" placeholder="Station Name">
-        <label for="latitude">Latitude:</label>
-        <input type="number" name="latitude" id="latitude" class="form-input" step="0.00001" placeholder="0.00000">
-        <label for="longitude">Latitude:</label>
-        <input type="number" name="longitude" id="longitude" class="form-input" step="0.00001" placeholder="0.00000">
-        <button type="submit" class="form-button">
-            Add Station
-        </button>
-    </form>
+    <label for="station_name" class="text-sm font-medium text-gray-700">Station Name:</label>
+    <input type="text" name="station_name" id="station_name" class="form-input" placeholder="Station Name">
+    <label for="latitude">Latitude:</label>
+    <input type="number" name="latitude" id="latitude" class="form-input" step="0.00001" placeholder="0.00000">
+    <label for="longitude">Latitude:</label>
+    <input type="number" name="longitude" id="longitude" class="form-input" step="0.00001" placeholder="0.00000">
+    <button type="submit" class="form-button">
+      Add Station
+    </button>
+  </form>
 </section>

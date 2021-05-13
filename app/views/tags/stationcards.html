@@ -1,47 +1,47 @@
 <div class="station-header-card">
-    <h3 class="card-title">${_station.name}</h3>
-    <div class="flex">
-        <i class="fas fa-map-marker-alt fa-2x mt-3"></i>
-        <ul class="text-sm mt-1 ml-3">
-            <li>${_station.latitude}</li>
-            <li>${_station.longitude}</li>
-        </ul>
-    </div>
+  <h3 class="card-title">${_station.name}</h3>
+  <div class="flex">
+    <i class="fas fa-map-marker-alt fa-2x mt-3"></i>
+    <ul class="text-sm mt-1 ml-3">
+      <li>${_station.latitude}</li>
+      <li>${_station.longitude}</li>
+    </ul>
+  </div>
 </div>
 
 <section class="flex flex-wrap justify-around md:flex-nowrap">
-    <article class="station-card">
-        <div class="card-section">
-            <h3 class="card-title">Weather</h3>
-            <i class="fas ${_stats.weatherIcon} fa-3x"></i>
-        </div>
-        <div class="card-section">
-            <p>${_stats.weatherCode}</p>
-        </div>
-    </article>
-    <article class="station-card">
-        <div class="card-section">
-            <h3 class="card-title">Temp</h3>
-            <i class="fas fa-temperature-low fa-3x"></i>
-        </div>
-        <div class="card-section">
-            <span>
-                <p>${_stats.celsius}C</p>
-                <p>${_stats.fahrenheit}F</p>
-                <p>Max: ${_stats.maxTemp}</p>
-                <p>Min: ${_stats.minTemp}</p>
-            </span>
-            <div class="card-trend">
-                <i class="fas fa-arrow-${_stats.tempTrend} fa-2x"></i>
-            </div>
-        </div>
-    </article>
-    <article class="station-card">
-        <div class="card-section">
-            <h3 class="card-title">Wind</h3>
-            <i class="fas fa-wind fa-3x"></i>
-        </div>
-        <div class="card-section">
+  <article class="station-card">
+    <div class="card-section">
+      <h3 class="card-title">Weather</h3>
+      <i class="fas ${_stats.weatherIcon} fa-3x"></i>
+    </div>
+    <div class="card-section">
+      <p>${_stats.weatherCode}</p>
+    </div>
+  </article>
+  <article class="station-card">
+    <div class="card-section">
+      <h3 class="card-title">Temp</h3>
+      <i class="fas fa-temperature-low fa-3x"></i>
+    </div>
+    <div class="card-section">
+      <span>
+          <p>${_stats.celsius}C</p>
+          <p>${_stats.fahrenheit}F</p>
+          <p>Max: ${_stats.maxTemp}</p>
+          <p>Min: ${_stats.minTemp}</p>
+      </span>
+      <div class="card-trend">
+        <i class="fas fa-arrow-${_stats.tempTrend} fa-2x"></i>
+      </div>
+    </div>
+  </article>
+  <article class="station-card">
+    <div class="card-section">
+      <h3 class="card-title">Wind</h3>
+      <i class="fas fa-wind fa-3x"></i>
+    </div>
+    <div class="card-section">
             <span>
                 <p>${_stats.windBeaufort} bft</p>
                 <p>${_stats.windDirection}</p>
@@ -49,25 +49,25 @@
                 <p>Max: ${_stats.maxWind}km/h</p>
                 <p>Min: ${_stats.minWind}km/h</p>
             </span>
-        </div>
-        <div class="card-trend">
-            <i class="fas fa-arrow-${_stats.windTrend} fa-2x"></i>
-        </div>
-    </article>
-    <article class="station-card">
-        <div class="card-section">
-            <h3 class="card-title">Pressure</h3>
-            <i class="fas fa-compress-arrows-alt fa-3x"></i>
-        </div>
-        <div class="card-section">
+    </div>
+    <div class="card-trend">
+      <i class="fas fa-arrow-${_stats.windTrend} fa-2x"></i>
+    </div>
+  </article>
+  <article class="station-card">
+    <div class="card-section">
+      <h3 class="card-title">Pressure</h3>
+      <i class="fas fa-compress-arrows-alt fa-3x"></i>
+    </div>
+    <div class="card-section">
             <span>
                 <p>${_stats.pressure} hpa</p>
                 <p>Max: ${_stats.maxPressure} hpa</p>
                 <p>Min: ${_stats.minPressure} hpa</p>
             </span>
-        </div>
-        <div class="card-trend">
-            <i class="fas fa-arrow-${_stats.presTrend} fa-2x"></i>
-        </div>
-    </article>
+    </div>
+    <div class="card-trend">
+      <i class="fas fa-arrow-${_stats.presTrend} fa-2x"></i>
+    </div>
+  </article>
 </section>

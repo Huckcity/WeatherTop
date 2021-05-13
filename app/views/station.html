@@ -5,67 +5,67 @@
 
 <section class="group m-2 p-2 border-2 rounded-lg">
 
-#{stationcards station:station, stats:stats /}
+  #{stationcards station:station, stats:stats /}
 
-<table class="min-w-full text-right">
+  <table class="min-w-full text-right">
     <thead class="bg-purple-100 font-bold text-purple-500">
     <tr class="">
-        <th class="p-2 text-left">Date/Time</th>
-        <th class="p-2">Code</th>
-        <th class="p-2">Temperature</th>
-        <th class="p-2">Wind Speed</th>
-        <th class="p-2">Wind Direction</th>
-        <th class="p-2">Pressure</th>
-        <th class="p-2">Actions</th>
+      <th class="p-2 text-left">Date/Time</th>
+      <th class="p-2">Code</th>
+      <th class="p-2">Temperature</th>
+      <th class="p-2">Wind Speed</th>
+      <th class="p-2">Wind Direction</th>
+      <th class="p-2">Pressure</th>
+      <th class="p-2">Actions</th>
     </tr>
     </thead>
     <tbody>
 
     #{list items:station.readings, as:'reading'}
     <tr class="hover:bg-gray-100 border-b-2 border-purple-100 hover:border-b-1 hover:border-gray-500">
-        <td class="text-left">${reading.prettyTime}</td>
-        <td>${reading.code}</td>
-        <td>${reading.temperature}C</td>
-        <td>${reading.windSpeed}km/h</td>
-        <td>${reading.windDirection}</td>
-        <td>${reading.pressure}</td>
-        <td>
-            <a href="/station/${station.id}/deleteReading/${reading.id}" class="mr-6">
-                <i class="fas fa-trash-alt"></i>
-            </a>
-        </td>
+      <td class="text-left">${reading.prettyTime}</td>
+      <td>${reading.code}</td>
+      <td>${reading.temperature}C</td>
+      <td>${reading.windSpeed}km/h</td>
+      <td>${reading.windDirection}</td>
+      <td>${reading.pressure}</td>
+      <td>
+        <a href="/station/${station.id}/deleteReading/${reading.id}" class="mr-6">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+      </td>
     </tr>
     #{/list}
 
     </tbody>
-</table>
+  </table>
 
-<hr>
+  <hr>
 
 </section>
 
 <section>
-    <form action="/station/${station.id}/addReading" method="post" class="form">
-        <label for="code">Code</label>
-        <select name="code" id="code" class="form-input">
-            <option value=100>100 (Clear)</option>
-            <option value=200>200 (Partial cloud)</option>
-            <option value=300>300 (Cloudy)</option>
-            <option value=400>400 (Light showers)</option>
-            <option value=500>500 (Heavy showers)</option>
-            <option value=600>600 (Rain)</option>
-            <option value=700>700 (Snow)</option>
-            <option value=800>800 (Thunder)</option>
-        </select>
-        <label for="temperature">Temperature</label>
-        <input type="number" id="temperature" name="temperature" placeholder=" 5.0C" class="form-input" step="any">
-        <label for="windSpeed">Wind Speed</label>
-        <input type="number" id="windSpeed" name="windSpeed" placeholder=" 10.5kmph" class="form-input" step="any">
-        <label for="windDirection">Wind Direction</label>
-        <input type="number" id="windDirection" name="windDirection" placeholder=" 180deg" class="form-input">
-        <label for="pressure">Pressure</label>
-        <input type="number" id="pressure" name="pressure" placeholder=" 000hPa" class="form-input">
-        <button type="submit" class="form-button">Save Reading</button>
-    </form>
+  <form action="/station/${station.id}/addReading" method="post" class="form">
+    <label for="code">Code</label>
+    <select name="code" id="code" class="form-input">
+      <option value=100>100 (Clear)</option>
+      <option value=200>200 (Partial cloud)</option>
+      <option value=300>300 (Cloudy)</option>
+      <option value=400>400 (Light showers)</option>
+      <option value=500>500 (Heavy showers)</option>
+      <option value=600>600 (Rain)</option>
+      <option value=700>700 (Snow)</option>
+      <option value=800>800 (Thunder)</option>
+    </select>
+    <label for="temperature">Temperature</label>
+    <input type="number" id="temperature" name="temperature" placeholder=" 5.0C" class="form-input" step="any">
+    <label for="windSpeed">Wind Speed</label>
+    <input type="number" id="windSpeed" name="windSpeed" placeholder=" 10.5kmph" class="form-input" step="any">
+    <label for="windDirection">Wind Direction</label>
+    <input type="number" id="windDirection" name="windDirection" placeholder=" 180deg" class="form-input">
+    <label for="pressure">Pressure</label>
+    <input type="number" id="pressure" name="pressure" placeholder=" 000hPa" class="form-input">
+    <button type="submit" class="form-button">Save Reading</button>
+  </form>
 
 </section>

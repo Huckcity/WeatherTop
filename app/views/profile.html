@@ -4,27 +4,27 @@
 #{menu id:"profile", member:member/}
 
 #{if err != null}
-    <div id="toast" class="toast-err">
-        <span>${err}</span>
-        <span class="toast-close" onclick="closeToast()"><i class="far fa-times-circle"></i></span>
-    </div>
+<div id="toast" class="toast-err">
+  <span>${err}</span>
+  <span class="toast-close" onclick="closeToast()"><i class="far fa-times-circle"></i></span>
+</div>
 #{/if}
 
 <section class="w-3/4 mx-auto">
-    <h1>Edit Your Profile</h1>
-    <form class="form" action="/account/edit" method="post">
-        <label for="firstName">Name:</label>
-        <input class="form-input" type="text" id="firstName" name="firstName" value="${member.firstName}">
-        <label for="firstName">Surname:</label>
-        <input class="form-input" type="text" id="lastName" name="lastName" value="${member.lastName}">
-        <label for="firstName">Email:</label>
-        <input class="form-input" type="text" id="email" name="email" value="${member.email}">
-        <label for="firstName">Change Password:</label>
-        <input class="form-input" type="password" id="password" name="password">
-        <label for="firstName">Repeat Password:</label>
-        <input class="form-input" type="password" id="repeatPassword" name="repeatPassword">
-        <button class="form-button">Save Changes</button>
-    </form>
+  <h1>Edit Your Profile</h1>
+  <form class="form" action="/account/edit" method="post">
+    <label for="firstName">Name:</label>
+    <input class="form-input" type="text" id="firstName" name="firstName" value="${member.firstName}">
+    <label for="firstName">Surname:</label>
+    <input class="form-input" type="text" id="lastName" name="lastName" value="${member.lastName}">
+    <label for="firstName">Email:</label>
+    <input class="form-input" type="text" id="email" name="email" value="${member.email}">
+    <label for="firstName">Change Password:</label>
+    <input class="form-input" type="password" id="password" name="password">
+    <label for="firstName">Repeat Password:</label>
+    <input class="form-input" type="password" id="repeatPassword" name="repeatPassword">
+    <button class="form-button">Save Changes</button>
+  </form>
 </section>
 
 <script>
