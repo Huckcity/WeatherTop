@@ -9,3 +9,4 @@ tmp
 *.iml
 *.ipr
 package.json
+.env
