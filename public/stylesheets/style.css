@@ -563,6 +563,9 @@ video {
 .top-16 {
 	top: 4rem;
 }
+.z-50 {
+	z-index: 50;
+}
 .m-2 {
 	margin: 0.5rem;
 }
@@ -609,11 +612,11 @@ video {
 .h-full {
 	height: 100%;
 }
-.w-full {
-	width: 100%;
-}
 .w-3\/4 {
 	width: 75%;
+}
+.w-full {
+	width: 100%;
 }
 .min-w-full {
 	min-width: 100%;
