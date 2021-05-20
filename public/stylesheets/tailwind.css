@@ -103,8 +103,8 @@ h1 {
     @apply  mt-2 py-1 px-3 bg-green-500 text-purple-100 font-bold px-5 py-2 rounded focus:outline-none shadow hover:bg-green-700 transition-colors disabled:opacity-30 disabled:hover:bg-green-500
 }
 
-.toast-err {
-    @apply w-1/2 flex justify-around items-center mx-auto rounded bg-red-300 m-2 p-2 text-center text-gray-50 font-bold;
+.toast {
+    @apply w-1/2 flex justify-between items-center mx-auto rounded bg-purple-300 m-2 p-4 text-center text-gray-50 font-bold;
 }
 
 .toast-close {

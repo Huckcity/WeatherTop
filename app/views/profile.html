@@ -3,9 +3,9 @@
 
 #{menu id:"profile", member:member/}
 
-#{if err != null}
-<div id="toast" class="toast-err">
-  <span>${err}</span>
+#{if msg}
+<div id="toast" class="toast">
+  <span>${msg}</span>
   <span class="toast-close" onclick="closeToast()"><i class="far fa-times-circle"></i></span>
 </div>
 #{/if}

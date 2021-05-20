@@ -12,6 +12,18 @@ import utils.StationUtils;
 
 public class StationCtrl extends Controller {
 
+  public static void station(Long id) {
+    try {
+      Member loggedInUser = Accounts.getLoggedInMember();
+      Station station = Station.findById(id);
+      StationDetails stats = StationUtils.calcStationDetails(station);
+      render("station.html", station, stats, loggedInUser);
+    } catch (Exception e) {
+      Logger.info("Failed to load station: " + e);
+      render("errors/404.html");
+    }
+  }
+
   public static void stations() {
     try {
       Member loggedInUser = Accounts.getLoggedInMember();
@@ -24,18 +36,6 @@ public class StationCtrl extends Controller {
       render("stations.html", loggedInUser, stations, stats);
     } catch (Exception e) {
       Logger.info("Failed to load all stations: " + e);
-      render("errors/404.html");
-    }
-  }
-
-  public static void station(Long id) {
-    try {
-      Member loggedInUser = Accounts.getLoggedInMember();
-      Station station = Station.findById(id);
-      StationDetails stats = StationUtils.calcStationDetails(station);
-      render("station.html", station, stats, loggedInUser);
-    } catch (Exception e) {
-      Logger.info("Failed to load station: " + e);
       render("errors/404.html");
     }
   }

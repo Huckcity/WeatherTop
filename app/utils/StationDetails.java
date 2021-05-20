@@ -18,8 +18,8 @@ public class StationDetails {
   public int maxPressure;
   public int minPressure;
 
-  public String tempTrend = "none";
-  public String windTrend = "none";
-  public String presTrend = "none";
+  public String tempTrend;
+  public String windTrend;
+  public String presTrend;
 
 }

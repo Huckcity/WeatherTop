@@ -45,8 +45,9 @@ public class Accounts extends Controller {
         }
         err = "Passwords did not match";
       }
+      String msg = err != null ? err : "Details Saved.";
       member.save();
-      render("profile.html", member, err);
+      render("profile.html", member, msg);
     } catch (Exception e) {
       Logger.info("Failed to edit profile: " + e.toString());
       redirect("/login");

@@ -11,14 +11,25 @@ import java.util.List;
 
 public class StationUtils {
 
+  private static final HashMap<Integer, String> weatherIcons = new HashMap<>();
+  static {
+    weatherIcons.put(100, "fa-sun");
+    weatherIcons.put(200, "fa-cloud-sun");
+    weatherIcons.put(300, "fa-cloud");
+    weatherIcons.put(400, "fa-cloud-rain");
+    weatherIcons.put(500, "fa-cloud-showers-heavy");
+    weatherIcons.put(600, "fa-tint");
+    weatherIcons.put(700, "fa-snowflake");
+    weatherIcons.put(800, "fa-poo-storm");
+  }
+
   public static StationDetails calcStationDetails(Station s) {
 
     StationDetails stats = new StationDetails();
-    List<Reading> readings = s.readings;
-    if (readings.size() > 0) {
+    if (s.readings.size() > 0) {
       Logger.info("attempting to populate station stats");
       try {
-        Reading latest = readings.get(readings.size() - 1);
+        Reading latest = s.readings.get(s.readings.size() - 1);
         stats.weatherCode = codeToText(latest.code);
         stats.fahrenheit = calcFahrenheit(latest.temperature);
         stats.windBeaufort = calcBeaufort(latest.windSpeed);
@@ -28,43 +39,30 @@ public class StationUtils {
         stats.celsius = latest.temperature;
         stats.pressure = latest.pressure;
 
-        // get max/min temp, windspeed, pressure and set prettyTime
+        // get max/min temp, windspeed, pressure
+        stats.minTemp = getMinTemp(s.readings);
+        stats.maxTemp = getMaxTemp(s.readings);
+        stats.minWind = getMinWind(s.readings);
+        stats.maxWind = getMaxWind(s.readings);
+        stats.minPressure = getMinPress(s.readings);
+        stats.maxPressure = getMaxPress(s.readings);
 
-        for (Reading reading : readings) {
-          if (reading.temperature < stats.minTemp) {
-            stats.minTemp = reading.temperature;
-          }
-          if (reading.temperature > stats.maxTemp) {
-            stats.maxTemp = reading.temperature;
-          }
-          if (reading.windSpeed < stats.minWind) {
-            stats.minWind = reading.windSpeed;
-          }
-          if (reading.windSpeed > stats.maxWind) {
-            stats.maxWind = reading.windSpeed;
-          }
-          if (reading.pressure < stats.minPressure) {
-            stats.minPressure = reading.pressure;
-          }
-          if (reading.pressure > stats.maxPressure) {
-            stats.maxPressure = reading.pressure;
-          }
-
+        // set prettyTime for more readable data
+        for (Reading reading : s.readings) {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm");
           reading.prettyTime = formatter.format(reading.date);
         }
 
         // get trends
-
         double[] lastThreeTemps = new double[3];
         double[] lastThreeWinds = new double[3];
         double[] lastThreePress = new double[3];
 
-        if (readings.size() > 2) {
+        if (s.readings.size() > 2) {
           for (int i = 0; i < 3; i++) {
-            lastThreeTemps[i] = readings.get(readings.size() - (i + 1)).temperature;
-            lastThreeWinds[i] = readings.get(readings.size() - (i + 1)).windSpeed;
-            lastThreePress[i] = readings.get(readings.size() - (i + 1)).pressure;
+            lastThreeTemps[i] = s.readings.get(s.readings.size() - (i + 1)).temperature;
+            lastThreeWinds[i] = s.readings.get(s.readings.size() - (i + 1)).windSpeed;
+            lastThreePress[i] = s.readings.get(s.readings.size() - (i + 1)).pressure;
           }
         }
 
@@ -76,8 +74,55 @@ public class StationUtils {
         Logger.info("Failed to populate station vals: " + e);
       }
     }
-
     return stats;
+  }
+
+  private static int getMaxPress(List<Reading> readings) {
+    int maxPress = readings.get(0).pressure;
+    for (Reading r : readings) {
+      maxPress = r.pressure > maxPress ? maxPress = r.pressure : maxPress;
+    }
+    return maxPress;
+  }
+
+  private static int getMinPress(List<Reading> readings) {
+    int minPress = readings.get(0).pressure;
+    for (Reading r : readings) {
+      minPress = r.pressure < minPress ? minPress = r.pressure : minPress;
+    }
+    return minPress;
+  }
+
+  private static double getMaxWind(List<Reading> readings) {
+    double maxWind = readings.get(0).windSpeed;
+    for (Reading r : readings) {
+      maxWind = r.windSpeed > maxWind ? maxWind = r.windSpeed : maxWind;
+    }
+    return maxWind;
+  }
+
+  private static double getMinWind(List<Reading> readings) {
+    double minWind = readings.get(0).windSpeed;
+    for (Reading r : readings) {
+      minWind = r.windSpeed < minWind ? minWind = r.windSpeed : minWind;
+    }
+    return minWind;
+  }
+
+  private static double getMaxTemp(List<Reading> readings) {
+    double maxTemp = readings.get(0).temperature;
+    for (Reading r : readings) {
+      maxTemp = r.temperature > maxTemp ? maxTemp = r.temperature : maxTemp;
+    }
+    return maxTemp;
+  }
+
+  private static double getMinTemp(List<Reading> readings) {
+    double minTemp = readings.get(0).temperature;
+    for (Reading r : readings) {
+      minTemp = r.temperature < minTemp ? minTemp = r.temperature : minTemp;
+    }
+    return minTemp;
   }
 
   private static String calcWindChill(double t, double v) {
@@ -127,38 +172,34 @@ public class StationUtils {
   }
 
   private static String codeToText(int code) {
-
-    HashMap<Integer, String> weatherCodes = new HashMap<>();
-    weatherCodes.put(100, "Clear");
-    weatherCodes.put(200, "Partial clouds");
-    weatherCodes.put(300, "Cloudy");
-    weatherCodes.put(400, "Light showers");
-    weatherCodes.put(500, "Heavy showers");
-    weatherCodes.put(600, "Rain");
-    weatherCodes.put(700, "Snow");
-    weatherCodes.put(800, "Thunder");
-
-    return weatherCodes.get(code);
-
+    // example of switch, hashmap could work
+    switch (code) {
+      case 100:
+        return "Clear";
+      case 200:
+        return "Partial Clouds";
+      case 300:
+        return "Cloudy";
+      case 400:
+        return "Light Showers";
+      case 500:
+        return "Heavy Showers";
+      case 600:
+        return "Rain";
+      case 700:
+        return "Snow";
+      case 800:
+        return "Thunder";
+      default:
+        return "Error!";
+    }
   }
 
   private static String weatherIcon(int code) {
-
-    HashMap<Integer, String> weatherIcons = new HashMap<>();
-    weatherIcons.put(100, "fa-sun");
-    weatherIcons.put(200, "fa-cloud-sun");
-    weatherIcons.put(300, "fa-cloud");
-    weatherIcons.put(400, "fa-cloud-rain");
-    weatherIcons.put(500, "fa-cloud-showers-heavy");
-    weatherIcons.put(600, "fa-tint");
-    weatherIcons.put(700, "fa-snowflake");
-    weatherIcons.put(800, "fa-poo-storm");
-
     return weatherIcons.get(code);
   }
 
   public static String checkTrend(double[] vals) {
-
     if (vals[0] > vals[1] && vals[1] > vals[2]) {
       return "up";
     }
