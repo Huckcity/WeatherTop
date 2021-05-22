@@ -172,7 +172,7 @@ public class StationUtils {
   }
 
   private static String codeToText(int code) {
-    // example of switch, hashmap could work
+    // example of switch, hashmap could work here too
     switch (code) {
       case 100:
         return "Clear";
@@ -201,12 +201,12 @@ public class StationUtils {
 
   public static String checkTrend(double[] vals) {
     if (vals[0] > vals[1] && vals[1] > vals[2]) {
-      return "up";
+      return "fa-arrow-up";
     }
     if (vals[0] < vals[1] && vals[1] < vals[2]) {
-      return "down";
+      return "fa-arrow-down";
     }
-    return "none";
+    return "fa-arrows-alt-h";
   }
 
 }

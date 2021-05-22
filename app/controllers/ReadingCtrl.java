@@ -8,8 +8,6 @@ import play.mvc.Controller;
 
 import java.util.Date;
 
-import static play.mvc.Controller.redirect;
-
 public class ReadingCtrl extends Controller {
 
   public static void addReading(Long id, int code, double temperature, int windSpeed, int pressure, int windDirection) {
