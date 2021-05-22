@@ -46,11 +46,15 @@ h1 {
 }
 
 .form {
-    @apply w-3/4 mx-auto;
+    @apply md:flex flex-wrap;
+}
+
+.form-section {
+    @apply w-full md:w-1/2 flex-shrink-0 p-2;
 }
 
 .form label {
-    @apply block md:inline font-bold text-purple-500;
+    @apply block font-bold text-purple-500;
 }
 
 .form-input {
@@ -60,8 +64,6 @@ h1 {
 .form-button {
     @apply  mt-2 py-1 px-3 bg-purple-500 text-purple-100 font-bold px-5 py-2 rounded focus:outline-none shadow hover:bg-purple-700 transition-colors
 }
-
-
 
 /**** NAV ELEMENTS ****/
 
