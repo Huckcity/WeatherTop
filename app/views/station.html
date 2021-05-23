@@ -3,11 +3,11 @@
 
 #{menu id:"stations", member:loggedInUser/}
 
-<section class="group m-2 p-2 border-2 rounded-lg">
+<section class="group">
 
   #{stationcards station:station, stats:stats /}
 
-  <table class="min-w-full text-right">
+  <table class="min-w-full my-2 text-right">
     <thead class="bg-purple-100 font-bold text-purple-500">
     <tr class="">
       <th class="p-2 text-left">Date/Time</th>
@@ -40,7 +40,7 @@
   </table>
 </section>
 
-<section class="m-2 p-2 border-2 rounded-lg">
+<section class="">
   <h1>Add A Reading</h1>
   <form action="/station/${station.id}/addReading" method="post" class="form">
     <div class="form-section">

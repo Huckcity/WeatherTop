@@ -10,7 +10,7 @@
 </div>
 #{/if}
 
-<section class="w-1/2 mx-auto">
+<section class="md:w-4/5 md:mx-auto mx-6 p-6 border-2 rounded-lg">
   <h1>Edit Your Profile</h1>
   <form class="form" action="/account/edit" method="post">
     <label for="firstName">Name:</label>
@@ -27,8 +27,3 @@
   </form>
 </section>
 
-<script>
-    function closeToast() {
-        $("#toast").fadeOut();
-    }
-</script>

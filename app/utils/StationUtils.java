@@ -27,7 +27,6 @@ public class StationUtils {
 
     StationDetails stats = new StationDetails();
     if (s.readings.size() > 0) {
-      Logger.info("attempting to populate station stats");
       try {
         Reading latest = s.readings.get(s.readings.size() - 1);
         stats.weatherCode = codeToText(latest.code);

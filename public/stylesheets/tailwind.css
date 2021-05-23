@@ -13,6 +13,10 @@ h1 {
     @apply text-3xl;
 }
 
+section {
+    @apply md:w-4/5 md:mx-auto mx-6 my-4 p-6 border-2 rounded-lg;
+}
+
 /**** CARDS ****/
 
 .station-header-card {
@@ -92,6 +96,10 @@ h1 {
 }
 
 /**** OTHER ****/
+
+.p-link {
+    @apply text-purple-700 hover:text-purple-900 hover:underline
+}
 
 .view-button {
     @apply  mt-2 py-1 px-3 bg-purple-500 text-purple-100 font-bold px-5 py-2 rounded focus:outline-none shadow hover:bg-purple-700 transition-colors

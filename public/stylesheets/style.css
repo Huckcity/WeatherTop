@@ -566,15 +566,20 @@ video {
 .z-50 {
 	z-index: 50;
 }
-.m-2 {
-	margin: 0.5rem;
-}
 .m-auto {
 	margin: auto;
+}
+.mx-6 {
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
 }
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+.my-2 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 .mr-6 {
 	margin-right: 1.5rem;
@@ -612,17 +617,14 @@ video {
 .h-full {
 	height: 100%;
 }
-.w-1\/2 {
-	width: 50%;
-}
 .w-full {
 	width: 100%;
 }
+.w-1\/2 {
+	width: 50%;
+}
 .min-w-full {
 	min-width: 100%;
-}
-.flex-col-reverse {
-	flex-direction: column-reverse;
 }
 .flex-col {
 	flex-direction: column;
@@ -633,16 +635,19 @@ video {
 .items-center {
 	align-items: center;
 }
-.justify-around {
-	justify-content: space-around;
-}
 .justify-between {
 	justify-content: space-between;
+}
+.justify-around {
+	justify-content: space-around;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-x-reverse: 0;
 	margin-right: calc(0.5rem * var(--tw-space-x-reverse));
 	margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.justify-self-end {
+	justify-self: end;
 }
 .rounded-lg {
 	border-radius: 0.5rem;
@@ -676,11 +681,18 @@ video {
 	-o-object-fit: cover;
 	   object-fit: cover;
 }
+.p-6 {
+	padding: 1.5rem;
+}
 .p-2 {
 	padding: 0.5rem;
 }
 .p-4 {
 	padding: 1rem;
+}
+.py-4 {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }
 .px-2 {
 	padding-left: 0.5rem;
@@ -738,6 +750,28 @@ h1, h2, h3, h4 {
 h1 {
 	font-size: 1.875rem;
 	line-height: 2.25rem;
+}
+
+section {
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	border-width: 2px;
+	padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+
+	section {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	section {
+		width: 80%;
+	}
 }
 
 /**** CARDS ****/
@@ -1038,6 +1072,17 @@ h1 {
 
 /**** OTHER ****/
 
+.p-link {
+	--tw-text-opacity: 1;
+	color: rgba(109, 40, 217, var(--tw-text-opacity));
+}
+
+.p-link:hover {
+	--tw-text-opacity: 1;
+	color: rgba(76, 29, 149, var(--tw-text-opacity));
+	text-decoration: underline;
+}
+
 .view-button {
 	margin-top: 0.5rem;
 	border-radius: 0.25rem;
@@ -1197,17 +1242,6 @@ h1 {
 	text-decoration: underline;
 }
 
-@media (min-width: 640px) {
-
-	.sm\:flex-row {
-		flex-direction: row;
-	}
-
-	.sm\:justify-between {
-		justify-content: space-between;
-	}
-}
-
 @media (min-width: 768px) {
 
 	.md\:relative {
@@ -1218,12 +1252,21 @@ h1 {
 		top: 0px;
 	}
 
+	.md\:mx-auto {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.md\:flex {
 		display: flex;
 	}
 
 	.md\:hidden {
 		display: none;
+	}
+
+	.md\:w-4\/5 {
+		width: 80%;
 	}
 
 	.md\:w-auto {

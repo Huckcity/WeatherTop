@@ -14,14 +14,20 @@ public class Accounts extends Controller {
     render("login.html");
   }
 
-  public static void register(String firstName, String lastName, String password, String repeatPass, String email) {
+  public static void register(String firstName, String lastName, String password, String repeatPassword, String email) {
     Logger.info("registering user: ");
 
-    // validate user
-
+    if (firstName.equals("") || lastName.equals("") || email.equals("") || password.equals("")) {
+      String err = "Please complete all fields.";
+      render("signup.html", err);
+    }
+    if (!password.equals(repeatPassword)) {
+      String err = "Passwords did not match.";
+      render("signup.html", err);
+    }
     Member newUser = new Member(firstName, lastName, email, password);
     newUser.save();
-    redirect("/");
+    redirect("/login");
   }
 
   public static void profile() {

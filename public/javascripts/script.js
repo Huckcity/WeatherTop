@@ -9,3 +9,7 @@ function toggleNav() {
         nav.classList.remove("show-nav");
     }
 }
+
+function closeToast() {
+    $("#toast").fadeOut();
+}
