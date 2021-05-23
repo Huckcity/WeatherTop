@@ -15,9 +15,15 @@ public class StationCtrl extends Controller {
   public static void station(Long id) {
     try {
       Member loggedInUser = Accounts.getLoggedInMember();
-      Station station = Station.findById(id);
-      StationDetails stats = StationUtils.calcStationDetails(station);
-      render("station.html", station, stats, loggedInUser);
+      for (Station s : loggedInUser.stations) {
+        if (s.id == id) {
+          Station station = Station.findById(id);
+          StationDetails stats = StationUtils.calcStationDetails(station);
+          render("station.html", station, stats, loggedInUser);
+        }
+      }
+      redirect("/stations");
+
     } catch (Exception e) {
       Logger.info("Failed to load station: " + e);
       render("errors/404.html");

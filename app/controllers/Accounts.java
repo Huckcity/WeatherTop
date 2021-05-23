@@ -42,8 +42,9 @@ public class Accounts extends Controller {
       if (!password.equals("")) {
         if (password.equals(repeatPassword)) {
           member.password = password;
+        } else {
+          err = "Passwords did not match";
         }
-        err = "Passwords did not match";
       }
       String msg = err != null ? err : "Details Saved.";
       member.save();
